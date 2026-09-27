@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#050a0a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Capítulo V · Desconexión</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="app-puerta5" class="app-container" style="background-color: #050a0a;">
+        
+        <!-- FOTOGRAFÍA DE FONDO -->
+        <div id="bg-media" class="landing-media blur-background transition-blur" aria-hidden="true" style="filter: blur(15px);">
+            <img id="bg-image" class="landing-image transition-image" src="assets/photos/deporte_fondo.jpg" alt="">
+        </div>
+        
+        <div id="bg-darkness" class="landing-base-dark transition-opacity" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.75);"></div>
+
+        <!-- LUCES WELLNESS PREMIUM (Aguamarina y Azul Profundo) -->
+        <div class="ambient-lights wellness-lights" aria-hidden="true">
+            <div class="light-blob well-1"></div>
+            <div class="light-blob well-2"></div>
+        </div>
+
+        <!-- =================================================
+             FASE 1: EL RETO DEPORTIVO
+        ================================================== -->
+        <section id="lock-screen" class="door-section">
+            <div id="riddle-content" class="door-content animate-fade-in-up delay-1">
+                <p class="door-number" style="color: #2dd4bf; font-weight: 400; letter-spacing: 0.25em;">CAPÍTULO V // NUESTRO REFUGIO</p>
+                <!-- Título elegante en Serif -->
+                <h2 class="door-title" style="font-family: var(--font-serif); font-size: 3.8rem; font-weight: 400; color: #ffffff; line-height: 1.1; margin-bottom: 1.5rem;">En movimiento.</h2>
+                
+                <p class="door-question" style="font-weight: 300; font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.6;">
+                    El deporte es nuestra forma de parar el mundo, desconectar de todo y conectar entre nosotros. Es nuestro nexo.<br><br>
+                    Para encender el marcador de este recuerdo, responde: ¿En qué deporte (y solo en este) te doy una paliza de vez en cuando?
+                </p>
+
+                <div class="input-group">
+                    <input type="text" id="riddle-input" class="apple-input wellness-input" placeholder="Escribe el deporte..." autocomplete="off">
+                    <p id="error-message" class="error-text hidden" style="color: #2dd4bf; font-weight: 300;">Me temo que ahí me ganas tú...</p>
+                </div>
+            </div>
+
+            <footer id="riddle-footer" class="door-footer animate-fade-in-up delay-2">
+                <button id="btn-unlock" class="continue-button wellness-button" type="button">
+                    <span class="continue-label">Desbloquear</span>
+                </button>
+            </footer>
+
+            <div id="success-message" class="success-message hidden">
+                <h3 class="success-title" style="font-family: var(--font-serif); font-style: italic; font-weight: 400; color: #fff; text-shadow: 0 4px 20px rgba(45, 212, 191, 0.4); font-size: 3.2rem;">Equipo perfecto</h3>
+                <p class="success-subtitle" style="color: #99f6e4; font-weight: 300; letter-spacing: 0.2em;">Marcador encendido</p>
+            </div>
+        </section>
+
+        <!-- =================================================
+             FASE 2: EL CINE (SUDOR Y RISAS)
+        ================================================== -->
+        <section id="unlocked-screen" class="memory-screen hidden">
+            
+            <div class="dynamic-media-container">
+                <div id="media-layer-1" class="media-layer layer-active"></div>
+                <div id="media-layer-2" class="media-layer layer-hidden"></div>
+                <div class="media-overlay" style="background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(0,0,0,0.95) 100%);"></div>
+            </div>
+
+            <div class="memory-content">
+                <div class="memory-header">
+                    <p class="door-number" style="color: #2dd4bf; font-weight: 400; letter-spacing: 0.15em;">EL MEJOR ENTRENAMIENTO</p>
+                    <h2 class="door-title" style="margin-bottom: 0.5rem; font-size: 3rem; font-family: var(--font-serif); font-weight: 400;">Compartir tiempo.</h2>
+                </div>
+
+                <div class="memory-text-container" style="margin-top: auto; margin-bottom: 2rem; text-align: center;">
+                    <p id="dynamic-story-text" class="door-question text-transition" style="font-size: 1.15rem; font-weight: 300; line-height: 1.6; text-shadow: 0 2px 10px rgba(0,0,0,0.9);">
+                        Preparando el recuerdo...
+                    </p>
+                </div>
+
+                <footer class="door-footer" style="padding-bottom: 2rem;">
+                    <button id="btn-next-door" class="continue-button wellness-button" style="opacity: 0; pointer-events: none; transition: opacity 1.5s ease;" type="button">
+                        <span class="continue-label">Siguiente capítulo</span>
+                        <span class="continue-arrow" aria-hidden="true">→</span>
+                    </button>
+                </footer>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const respuestasValidas = ["basket", "baloncesto"];
+            
+            // =====================================================
+            // EL GUIÓN WELLNESS (13 Vídeos + 4 Fotos en modo dinámico)
+            // =====================================================
+            const secuenciaMemoria = [
+                {
+                    type: "video",
+                    media: "assets/photos/deporte_vid_1.mp4",
+                    text: "El deporte es nuestra terapia. Nuestro momento de parar el mundo.",
+                    duration: 6000
+                },
+                {
+                    type: "grid", layout: "layout-2", 
+                    media: ["assets/photos/deporte_vid_2.mp4", "assets/photos/deporte_vid_3.mp4"],
+                    text: "Codo con codo, sudando y riendo a partes iguales.",
+                    duration: 5500
+                },
+                {
+                    type: "grid", layout: "layout-2", 
+                    media: ["assets/photos/deporte_foto_1.jpg", "assets/photos/deporte_foto_2.jpg"],
+                    text: "Tú me empujas a ser mejor, y yo intento seguirte el ritmo.",
+                    duration: 5000
+                },
+                {
+                    type: "video",
+                    media: "assets/photos/deporte_vid_4.mp4",
+                    text: "Rodando, saltando o corriendo...",
+                    duration: 6000
+                },
+                {
+                    type: "grid", layout: "layout-2", 
+                    media: ["assets/photos/deporte_vid_5.mp4", "assets/photos/deporte_vid_6.mp4"],
+                    text: "...la única regla es hacerlo juntos.",
+                    duration: 5500
+                },
+                {
+                    type: "video",
+                    media: "assets/photos/deporte_vid_7.mp4",
+                    text: "A veces toca competir (y ahí no hay piedad).",
+                    duration: 6000
+                },
+                {
+                    type: "grid", layout: "layout-2", 
+                    media: ["assets/photos/deporte_foto_3.jpg", "assets/photos/deporte_foto_4.jpg"],
+                    text: "Pero al final del día, siempre somos el mismo equipo.",
+                    duration: 5000
+                },
+                {
+                    type: "grid", layout: "layout-2", 
+                    media: ["assets/photos/deporte_vid_8.mp4", "assets/photos/deporte_vid_9.mp4"],
+                    text: "Celebrando cada pequeño logro...",
+                    duration: 5500
+                },
+                {
+                    type: "video",
+                    media: "assets/photos/deporte_vid_10.mp4",
+                    text: "...y levantándonos de cada caída.",
+                    duration: 6000
+                },
+                {
+                    type: "grid", layout: "layout-2", 
+                    media: ["assets/photos/deporte_vid_11.mp4", "assets/photos/deporte_vid_12.mp4"],
+                    text: "Porque la verdadera meta no es llegar primero...",
+                    duration: 5500
+                },
+                {
+                    type: "video",
+                    media: "assets/photos/deporte_vid_13.mp4",
+                    text: "...sino disfrutar de todo el camino a tu lado.",
+                    duration: 6500
+                }
+            ];
+
+            const btnUnlock = document.getElementById("btn-unlock");
+            const inputRiddle = document.getElementById("riddle-input");
+            const errorText = document.getElementById("error-message");
+            const lockScreen = document.getElementById("lock-screen");
+            const riddleContent = document.getElementById("riddle-content");
+            const riddleFooter = document.getElementById("riddle-footer");
+            const successMessage = document.getElementById("success-message");
+            const unlockedScreen = document.getElementById("unlocked-screen");
+            const bgMedia = document.getElementById("bg-media");
+            const bgDarkness = document.getElementById("bg-darkness");
+            
+            const layer1 = document.getElementById("media-layer-1");
+            const layer2 = document.getElementById("media-layer-2");
+            const storyText = document.getElementById("dynamic-story-text");
+            const btnNextDoor = document.getElementById("btn-next-door");
+            
+            let activeLayer = layer1;
+            let hiddenLayer = layer2;
+            let currentSequenceIndex = 0;
+            let movieTimeout;
+            let botonMostrado = false;
+
+            function normalizarTexto(texto) {
+                return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[.,;!?]/g, "").trim();
+            }
+
+            // [NUEVO] ¡Ahora las cuadrículas soportan vídeos y fotos a la vez!
+            function construirLayout(step) {
+                if (step.type === "grid") {
+                    return `
+                        <div class="layout-grid ${step.layout}">
+                            ${step.media.map((src, i) => {
+                                const isVideo = src.toLowerCase().endsWith('.mp4');
+                                const mediaElement = isVideo 
+                                    ? `<video class="media-fit" src="${src}" autoplay muted loop playsinline></video>`
+                                    : `<img class="media-fit" src="${src}" alt="">`;
+                                
+                                return `
+                                <div class="media-wrapper item-${i}">
+                                    ${mediaElement}
+                                    <div class="edge-blend"></div>
+                                </div>
+                                `;
+                            }).join('')}
+                        </div>`;
+                } else if (step.type === "video") {
+                    return `
+                        <div class="media-wrapper">
+                            <video class="media-fit" src="${step.media}" autoplay muted loop playsinline></video>
+                            <div class="edge-blend"></div>
+                        </div>
+                    `;
+                }
+            }
+
+            function reproducirSecuencia() {
+                const step = secuenciaMemoria[currentSequenceIndex];
+
+                if (currentSequenceIndex === secuenciaMemoria.length - 1 && !botonMostrado) {
+                    btnNextDoor.style.opacity = 1;
+                    btnNextDoor.style.pointerEvents = "auto";
+                    botonMostrado = true;
+                }
+
+                hiddenLayer.innerHTML = construirLayout(step);
+
+                storyText.style.opacity = 0;
+                setTimeout(() => {
+                    storyText.innerText = step.text;
+                    storyText.style.opacity = 1;
+                }, 800);
+
+                hiddenLayer.classList.remove("layer-hidden");
+                hiddenLayer.classList.add("layer-active");
+                activeLayer.classList.remove("layer-active");
+                activeLayer.classList.add("layer-hidden");
+
+                const temp = activeLayer;
+                activeLayer = hiddenLayer;
+                hiddenLayer = temp;
+
+                currentSequenceIndex++;
+                if (currentSequenceIndex >= secuenciaMemoria.length) {
+                    currentSequenceIndex = 0; 
+                }
+
+                movieTimeout = setTimeout(reproducirSecuencia, step.duration);
+            }
+
+            function verificarRespuesta() {
+                const inputNormalizado = normalizarTexto(inputRiddle.value);
+                const esCorrecta = respuestasValidas.some(val => {
+                    return inputNormalizado === val || inputNormalizado.includes(val);
+                });
+
+                if (esCorrecta) {
+                    if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
+                    errorText.classList.remove("show");
+
+                    riddleContent.classList.add("fade-out-fast");
+                    riddleFooter.classList.add("fade-out-fast");
+                        
+                    // 1. REVELAMOS LA FOTO DE FONDO (Quitamos el blur y aclaramos)
+                    bgMedia.classList.remove("blur-background");
+                    bgMedia.classList.add("light-blur");
+                    bgDarkness.style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+                    
+                    setTimeout(() => {
+                        successMessage.classList.remove("hidden");
+                        successMessage.classList.add("animate-fade-in-up");
+                    }, 800);
+
+                    setTimeout(() => {
+                        successMessage.classList.add("fade-out-fast");
+                        
+                        setTimeout(() => {
+                            // 2. APAGAMOS LA FOTO DE FONDO PARA ENTRAR A LA PELÍCULA
+                            bgMedia.classList.add("fade-out-fast");
+                            bgDarkness.style.opacity = "0";
+                            
+                            lockScreen.classList.add("hidden");
+                            unlockedScreen.classList.remove("hidden");
+                            reproducirSecuencia();
+                        }, 800);
+                    }, 4000); // Le damos 4 segundos para disfrutar la foto antes del cine
+
+                } else {
+                    if (navigator.vibrate) navigator.vibrate(200);
+                    errorText.classList.add("show");
+                    inputRiddle.classList.remove("shake");
+                    void inputRiddle.offsetWidth; 
+                    inputRiddle.classList.add("shake");
+                }
+            }
+
+            if(btnUnlock) btnUnlock.addEventListener("click", verificarRespuesta);
+            if(inputRiddle) {
+                inputRiddle.addEventListener("keypress", (e) => {
+                    if (e.key === "Enter") { e.preventDefault(); inputRiddle.blur(); verificarRespuesta(); }
+                });
+            }
+
+            if(btnNextDoor) {
+                btnNextDoor.addEventListener("click", () => {
+                    if (navigator.vibrate) navigator.vibrate(50);
+                    document.getElementById("app-puerta5").classList.add("fade-out");
+                    // Mandaremos a la sorpresa final
+                    setTimeout(() => window.location.href = "final.html", 1200);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>26 · 09 · 2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="app">
+        <!-- =================================================
+             FONDOS Y EFECTOS COMPARTIDOS
+        ================================================== -->
+        <section class="landing-screen" aria-label="Nuestra historia">
+            
+            <div class="landing-media" aria-hidden="true">
+                <!-- [PERSONALIZAR] Aquí va vuestra foto -->
+                <img class="landing-image" src="assets/photos/cover.jpg" alt="">
+            </div>
+            
+            <!-- Oscurecimiento más suave y uniforme -->
+            <div class="landing-base-dark" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.45);"></div>
+
+            <div class="ambient-lights" aria-hidden="true">
+                <div class="light-blob light-1"></div>
+                <div class="light-blob light-2"></div>
+                <div class="light-blob light-3"></div>
+            </div>
+
+            <!-- Viñeta ultra suave (solo para dar profundidad) -->
+            <div class="landing-vignette" aria-hidden="true" style="background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.6) 150%);"></div>
+
+            <!-- =================================================
+                 PANTALLA 1: INTRODUCCIÓN ELEGANTE
+            ================================================== -->
+            <div id="step-1" class="landing-content">
+                <header class="landing-header">
+                    <p class="landing-date animate-fade-in-up delay-1">26 · 09 · 2026</p>
+                </header>
+
+                <div class="landing-center">
+                    <!-- Algo más íntimo y directo -->
+                    <h1 class="landing-title animate-fade-in-up delay-2">Feliz<br>Aniversario.</h1>
+                    <p class="landing-subtitle animate-fade-in-up delay-3" style="margin-top: 1.5rem; color: rgba(255,255,255,0.85); font-weight: 300;">
+                        Siete años construyendo<br>nuestro propio mundo.
+                    </p>
+                </div>
+
+                <footer class="landing-footer animate-fade-in-up delay-4">
+                    <button id="btn-next-step" class="continue-button" type="button">
+                        <span class="continue-label">Descubrir</span>
+                        <span class="continue-arrow" aria-hidden="true">→</span>
+                    </button>
+                </footer>
+            </div>
+
+            <!-- =================================================
+                 PANTALLA 2: EXPLICACIÓN DEL REGALO
+            ================================================== -->
+            <div id="step-2" class="landing-content hidden">
+                <header class="landing-header">
+                    <p class="landing-date animate-fade-in-up delay-1">26 · 09 · 2026</p>
+                </header>
+
+                <div class="landing-center">
+                    <h1 class="landing-title animate-fade-in-up delay-2" style="font-size: 3.5rem;">7 años.</h1>
+                    
+                    <div class="landing-message animate-fade-in-up delay-3">
+                        <p>Este año el regalo no viene en una caja.</p>
+                        <p>No hay papel que romper, ni un lazo que desatar. Va un paso más allá.</p>
+                        <p>Para descubrirlo, tendrás que navegar por nuestra historia a través de esta experiencia.</p>
+                    </div>
+                </div>
+
+                <footer class="landing-footer animate-fade-in-up delay-4">
+                    <button id="btn-start-game" class="continue-button" type="button">
+                        <span class="continue-label">Continuar</span>
+                        <span class="continue-arrow" aria-hidden="true">→</span>
+                    </button>
+                </footer>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

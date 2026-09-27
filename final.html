@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0f1115">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Epílogo · El Siguiente Capítulo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <main id="app-final" class="app-container mystic-premium-bg">
+        
+        <div class="noise-overlay"></div>
+        
+        <!-- FONDO DINÁMICO -->
+        <div id="bg-media" class="landing-media transition-blur" aria-hidden="true" style="filter: blur(35px); opacity: 0.3;">
+            <img id="bg-image" class="landing-image transition-image" src="assets/photos/final_fondo.jpg" alt="">
+        </div>
+        
+        <div id="bg-darkness" class="landing-base-dark transition-opacity" aria-hidden="true" style="background-color: rgba(10, 12, 16, 0.5); backdrop-filter: blur(20px);"></div>
+
+        <div class="ambient-lights mystic-lights" aria-hidden="true">
+            <div class="light-blob mystic-1"></div>
+            <div class="light-blob mystic-2"></div>
+        </div>
+
+        <!-- CAPA PARA EL VÍDEO DEL AVIÓN (Transición Cinematográfica) -->
+        <div id="video-overlay" class="hidden" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 50; background: #000; opacity: 0; transition: opacity 1s ease;">
+            <video id="plane-video" class="media-fit" src="assets/photos/avion_despegando.mp4" muted playsinline preload="metadata"></video>
+        </div>
+
+        <!-- =================================================
+             PANTALLAS DEL CÓDIGO (1 al 5)
+        ================================================== -->
+        <section id="stage-intro" class="door-section">
+            <div class="door-content animate-fade-in-up delay-1">
+                <p class="door-number mystic-accent">EPÍLOGO</p>
+                <h2 class="door-title mystic-title">Archivo vacío.</h2>
+                <p class="door-question mystic-text">
+                    Hemos llegado al final de los recuerdos de este año.<br><br>
+                    Pero un archivo vacío no es un final. Es un lienzo en blanco para lo que está por venir. Ahora nos toca escribir el siguiente capítulo juntos.<br><br>
+                    Para abrir la última puerta, deberás demostrar que nos conoces mejor que nadie obteniendo la clave de acceso.
+                </p>
+            </div>
+            <footer class="door-footer animate-fade-in-up delay-2">
+                <button id="btn-start-code" class="continue-button mystic-button" type="button"><span class="continue-label">Iniciar Secuencia</span></button>
+            </footer>
+        </section>
+
+        <!-- DÍGITO 1 -->
+        <section id="stage-digit-1" class="door-section hidden">
+            <div class="door-content">
+                <p class="door-number mystic-accent">SECUENCIA 1/3</p>
+                <h2 class="door-title mystic-title">Primer dígito.</h2>
+                <p class="door-question mystic-text">El número que compartimos en el baloncesto. Ese que llevamos a la espalda en nuestras respectivas equipaciones.</p>
+                <div class="input-group mystic-input-group">
+                    <input type="number" id="input-d1" class="mystic-single-input" placeholder="·" autocomplete="off" min="0" max="9">
+                    <p id="error-d1" class="error-text hidden mystic-error">Secuencia incorrecta.</p>
+                    <p id="success-d1" class="success-text hidden mystic-success-msg">¡Correcto!</p>
+                </div>
+            </div>
+            <footer class="door-footer">
+                <button id="btn-d1" class="continue-button mystic-button" type="button"><span class="continue-label">Confirmar</span></button>
+            </footer>
+        </section>
+
+        <!-- DÍGITO 2 -->
+        <section id="stage-digit-2" class="door-section hidden">
+            <div class="door-content">
+                <p class="door-number mystic-accent">SECUENCIA 2/3</p>
+                <h2 class="door-title mystic-title">Segundo dígito.</h2>
+                <p class="door-question mystic-text">El número exacto de veces que hemos viajado juntos fuera de España.</p>
+                <div class="input-group mystic-input-group">
+                    <input type="number" id="input-d2" class="mystic-single-input" placeholder="·" autocomplete="off" min="0" max="9">
+                    <p id="error-d2" class="error-text hidden mystic-error">Secuencia incorrecta.</p>
+                    <p id="success-d2" class="success-text hidden mystic-success-msg">¡Correcto!</p>
+                </div>
+            </div>
+            <footer class="door-footer">
+                <button id="btn-d2" class="continue-button mystic-button" type="button"><span class="continue-label">Confirmar</span></button>
+            </footer>
+        </section>
+
+        <!-- DÍGITO 3 -->
+        <section id="stage-digit-3" class="door-section hidden">
+            <div class="door-content">
+                <p class="door-number mystic-accent">SECUENCIA 3/3</p>
+                <h2 class="door-title mystic-title">Tercer dígito.</h2>
+                <p class="door-question mystic-text">El número que representa los años que llevamos compartiendo este viaje juntos.</p>
+                <div class="input-group mystic-input-group">
+                    <input type="number" id="input-d3" class="mystic-single-input" placeholder="·" autocomplete="off" min="0" max="9">
+                    <p id="error-d3" class="error-text hidden mystic-error">Secuencia incorrecta.</p>
+                    <p id="success-d3" class="success-text hidden mystic-success-msg">¡Correcto!</p>
+                </div>
+            </div>
+            <footer class="door-footer">
+                <button id="btn-d3" class="continue-button mystic-button" type="button"><span class="continue-label">Confirmar</span></button>
+            </footer>
+        </section>
+
+        <!-- ANIMACIÓN DEL CÓDIGO FINAL -->
+        <section id="stage-animation" class="door-section hidden">
+            <div class="door-content" style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                <div class="final-code-display">
+                    <span id="final-code-1" class="code-slot">·</span>
+                    <span id="final-code-2" class="code-slot">·</span>
+                    <span id="final-code-3" class="code-slot">·</span>
+                </div>
+                <h3 id="access-granted" class="success-title mystic-success hidden">ACCESO CONCEDIDO</h3>
+            </div>
+        </section>
+
+        <!-- =================================================
+             LA FASE DE PISTAS (OPORTO)
+        ================================================== -->
+        <section id="stage-destination" class="door-section hidden no-scroll-stage">
+            <div class="door-content animate-fade-in-up flex-compact">
+                <div class="compact-header">
+                    <p class="door-number mystic-accent">NUEVO CAPÍTULO</p>
+                    <h2 class="door-title mystic-title" style="margin-bottom: 0.5rem;">Nos vamos de viaje.</h2>
+                    <p class="door-question mystic-text" style="font-size: 1rem; margin-bottom: 0;">
+                        El mejor regalo no se envuelve, se mete en una maleta.<br>
+                        Solicita pistas para descubrir las coordenadas de nuestro próximo destino.
+                    </p>
+                </div>
+
+                <div class="mystic-clue-box">
+                    <p id="clue-text" class="mystic-clue-text">Presiona para revelar la primera pista.</p>
+                    <button id="btn-clue" class="mystic-button clue-btn-compact" type="button">Pedir pista</button>
+                </div>
+
+                <div class="input-group mystic-input-group compact-input">
+                    <input type="text" id="input-dest" class="mystic-text-input" placeholder="Introduce el destino..." autocomplete="off">
+                    <p id="error-dest" class="error-text hidden mystic-error" style="margin-top: 0.5rem; font-size: 0.85rem;">Coordenadas incorrectas.</p>
+                </div>
+            </div>
+
+            <footer class="door-footer animate-fade-in-up compact-footer">
+                <button id="btn-unlock-dest" class="continue-button mystic-button" type="button">
+                    <span class="continue-label">Autorizar</span>
+                </button>
+            </footer>
+
+            <div id="success-dest" class="success-message hidden">
+                <h3 class="success-title mystic-title" style="color: #d4af37;">Destino fijado</h3>
+                <p class="success-subtitle mystic-accent" style="color: rgba(212, 175, 55, 0.8);">Generando tarjetas de embarque...</p>
+            </div>
+        </section>
+
+        <!-- =================================================
+             EL BILLETE FINAL (A PANTALLA COMPLETA)
+        ================================================== -->
+        <section id="unlocked-screen" class="final-screen hidden">
+             <div class="full-screen-boarding-pass animate-fade-in-up delay-1">
+                 
+                 <!-- Capa de cristal oscuro para resaltar el texto sobre la foto -->
+                 <div class="glass-overlay"></div>
+
+                 <div class="fs-header">
+                     <div class="fs-logo">
+                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                             <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L3 8l6 4-4 4-3-1-2 2 4 4 2-2-1-3 4-4 4 6 1.2-.7c.4-.2.7-.6.6-1.1z"/>
+                         </svg>
+                         <span>ANIVERSARIO AIRLINES</span>
+                     </div>
+                     <span class="fs-class">CLASE VIP</span>
+                 </div>
+                 
+                 <div class="fs-body">
+                     <div class="fs-route">
+                         <div class="fs-city text-left">
+                             <h2>MAD</h2>
+                             <p>MADRID</p>
+                         </div>
+                         <div class="fs-route-icon">
+                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                 <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L3 8l6 4-4 4-3-1-2 2 4 4 2-2-1-3 4-4 4 6 1.2-.7c.4-.2.7-.6.6-1.1z"/>
+                             </svg>
+                         </div>
+                         <div class="fs-city text-right">
+                             <h2>OPO</h2>
+                             <p>OPORTO</p>
+                         </div>
+                     </div>
+
+                     <div class="fs-details-grid">
+                         <div class="fs-detail-box">
+                             <span class="fs-label">PASAJEROS</span>
+                             <span class="fs-value">El mejor equipo</span>
+                         </div>
+                         <div class="fs-detail-box text-right">
+                             <span class="fs-label">FECHA</span>
+                             <span class="fs-value">7 - 9 Noviembre</span>
+                         </div>
+                         <div class="fs-detail-box">
+                             <span class="fs-label">MOTIVO</span>
+                             <span class="fs-value">Sumar recuerdos</span>
+                         </div>
+                         <div class="fs-detail-box text-right">
+                             <span class="fs-label">PUERTA</span>
+                             <span class="fs-value">07</span>
+                         </div>
+                     </div>
+                 </div>
+                 
+                 <div class="fs-footer">
+                     <p class="fs-scan-text">BOARDING PASS • ESCANEAR PARA EMBARCAR</p>
+                     <div class="fs-barcode">
+                         <svg width="100%" height="60" preserveAspectRatio="none" viewBox="0 0 200 60" fill="#ffffff">
+                             <rect x="10" y="0" width="4" height="60"/><rect x="18" y="0" width="8" height="60"/><rect x="30" y="0" width="2" height="60"/><rect x="36" y="0" width="6" height="60"/><rect x="46" y="0" width="2" height="60"/><rect x="52" y="0" width="10" height="60"/><rect x="66" y="0" width="4" height="60"/><rect x="74" y="0" width="2" height="60"/><rect x="80" y="0" width="8" height="60"/><rect x="92" y="0" width="4" height="60"/><rect x="100" y="0" width="10" height="60"/><rect x="114" y="0" width="2" height="60"/><rect x="120" y="0" width="6" height="60"/><rect x="130" y="0" width="4" height="60"/><rect x="138" y="0" width="8" height="60"/><rect x="150" y="0" width="2" height="60"/><rect x="156" y="0" width="6" height="60"/><rect x="166" y="0" width="10" height="60"/><rect x="180" y="0" width="4" height="60"/><rect x="188" y="0" width="2" height="60"/>
+                         </svg>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            function normalizarTexto(texto) {
+                return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[.,;!?]/g, "").trim();
+            }
+
+            // ----------------------------------------------------
+            // LÓGICA DE LA CAJA FUERTE (5-3-7)
+            // ----------------------------------------------------
+            const code1 = "5"; 
+            const code2 = "3"; 
+            const code3 = "7"; 
+
+            const stageIntro = document.getElementById("stage-intro");
+            const stageD1 = document.getElementById("stage-digit-1");
+            const stageD2 = document.getElementById("stage-digit-2");
+            const stageD3 = document.getElementById("stage-digit-3");
+            const stageAnim = document.getElementById("stage-animation");
+            const stageDest = document.getElementById("stage-destination");
+            const unlockedScreen = document.getElementById("unlocked-screen");
+            
+            const bgImage = document.getElementById("bg-image");
+            const videoOverlay = document.getElementById("video-overlay");
+            const planeVideo = document.getElementById("plane-video");
+
+            function switchStage(currentStage, nextStage) {
+                currentStage.classList.add("fade-out-fast");
+                setTimeout(() => {
+                    currentStage.classList.add("hidden");
+                    nextStage.classList.remove("hidden");
+                    nextStage.classList.add("animate-fade-in-up");
+                }, 800);
+            }
+
+            const btnStart = document.getElementById("btn-start-code");
+            const btnD1 = document.getElementById("btn-d1"), inputD1 = document.getElementById("input-d1"), errorD1 = document.getElementById("error-d1"), successD1 = document.getElementById("success-d1");
+            const btnD2 = document.getElementById("btn-d2"), inputD2 = document.getElementById("input-d2"), errorD2 = document.getElementById("error-d2"), successD2 = document.getElementById("success-d2");
+            const btnD3 = document.getElementById("btn-d3"), inputD3 = document.getElementById("input-d3"), errorD3 = document.getElementById("error-d3"), successD3 = document.getElementById("success-d3");
+
+            [inputD1, inputD2, inputD3].forEach(input => {
+                input.addEventListener('input', (e) => { if (e.target.value.length > 1) e.target.value = e.target.value.slice(-1); });
+            });
+
+            btnStart.addEventListener("click", () => { if (navigator.vibrate) navigator.vibrate(50); switchStage(stageIntro, stageD1); });
+
+            function checkD1() {
+                if (inputD1.value === code1) {
+                    if (navigator.vibrate) navigator.vibrate([30, 50, 30]); errorD1.classList.add("hidden");
+                    inputD1.classList.add("mystic-input-success"); successD1.classList.remove("hidden"); successD1.classList.add("animate-fade-in-up"); btnD1.style.opacity = "0"; inputD1.blur();
+                    setTimeout(() => { switchStage(stageD1, stageD2); }, 1500);
+                } else {
+                    if (navigator.vibrate) navigator.vibrate(200); errorD1.classList.remove("hidden"); inputD1.classList.remove("shake"); void inputD1.offsetWidth; inputD1.classList.add("shake");
+                }
+            }
+            btnD1.addEventListener("click", checkD1); inputD1.addEventListener("keypress", (e) => { if (e.key === "Enter") { e.preventDefault(); checkD1(); } });
+
+            function checkD2() {
+                if (inputD2.value === code2) {
+                    if (navigator.vibrate) navigator.vibrate([30, 50, 30]); errorD2.classList.add("hidden");
+                    inputD2.classList.add("mystic-input-success"); successD2.classList.remove("hidden"); successD2.classList.add("animate-fade-in-up"); btnD2.style.opacity = "0"; inputD2.blur();
+                    setTimeout(() => { switchStage(stageD2, stageD3); }, 1500);
+                } else {
+                    if (navigator.vibrate) navigator.vibrate(200); errorD2.classList.remove("hidden"); inputD2.classList.remove("shake"); void inputD2.offsetWidth; inputD2.classList.add("shake");
+                }
+            }
+            btnD2.addEventListener("click", checkD2); inputD2.addEventListener("keypress", (e) => { if (e.key === "Enter") { e.preventDefault(); checkD2(); } });
+
+            function checkD3() {
+                if (inputD3.value === code3) {
+                    if (navigator.vibrate) navigator.vibrate([30, 50, 30]); errorD3.classList.add("hidden");
+                    inputD3.classList.add("mystic-input-success"); successD3.classList.remove("hidden"); successD3.classList.add("animate-fade-in-up"); btnD3.style.opacity = "0"; inputD3.blur();
+                    setTimeout(() => { switchStage(stageD3, stageAnim); playFinalAnimation(); }, 1500);
+                } else {
+                    if (navigator.vibrate) navigator.vibrate(200); errorD3.classList.remove("hidden"); inputD3.classList.remove("shake"); void inputD3.offsetWidth; inputD3.classList.add("shake");
+                }
+            }
+            btnD3.addEventListener("click", checkD3); inputD3.addEventListener("keypress", (e) => { if (e.key === "Enter") { e.preventDefault(); checkD3(); } });
+
+            // ==========================================
+            // ANIMACIÓN FINAL Y VÍDEO (15 SEGUNDOS)
+            // ==========================================
+            function playFinalAnimation() {
+                const s1 = document.getElementById("final-code-1"), s2 = document.getElementById("final-code-2"), s3 = document.getElementById("final-code-3"), grantedText = document.getElementById("access-granted");
+                setTimeout(() => { s1.innerText = code1; s1.classList.add("glow-number"); if (navigator.vibrate) navigator.vibrate(100); }, 1000);
+                setTimeout(() => { s2.innerText = code2; s2.classList.add("glow-number"); if (navigator.vibrate) navigator.vibrate(100); }, 2000);
+                setTimeout(() => { s3.innerText = code3; s3.classList.add("glow-number"); if (navigator.vibrate) navigator.vibrate(100); }, 3000);
+                setTimeout(() => {
+                    grantedText.classList.remove("hidden"); grantedText.classList.add("animate-fade-in-up");
+                    if (navigator.vibrate) navigator.vibrate([100, 100, 100]);
+                    
+                    // TRANSICIÓN DE CINE: VÍDEO DEL AVIÓN (ÚLTIMOS 15 SEGUNDOS)
+                    setTimeout(() => {
+                        videoOverlay.classList.remove("hidden");
+                        void videoOverlay.offsetWidth; // Reflow
+                        videoOverlay.style.opacity = "1";
+                        
+                        // Saltamos a los últimos 15 segundos del vídeo
+                        if(planeVideo.duration > 15) {
+                            planeVideo.currentTime = planeVideo.duration - 15;
+                        }
+                        planeVideo.play();
+
+                        // A los 15 segundos, ocultamos el vídeo y mostramos las pistas
+                        setTimeout(() => {
+                            videoOverlay.style.opacity = "0";
+                            setTimeout(() => {
+                                videoOverlay.classList.add("hidden");
+                                bgImage.src = "assets/photos/viaje_fondo.jpg"; // Cambiamos el fondo
+                                switchStage(stageAnim, stageDest); // Pasamos a las pistas de Oporto
+                            }, 1000);
+                        }, 15000); 
+
+                    }, 2500); 
+                }, 4500);
+            }
+
+            // ----------------------------------------------------
+            // LÓGICA DE LAS PISTAS (OPORTO)
+            // ----------------------------------------------------
+            const respuestasDestino = ["oporto", "porto"];
+            const pistas = [
+                "Pista 1: Tendrás que pedirte unos días libres... Nos vamos del [FECHA] al [FECHA].",
+                "Pista 2: Es una ciudad famosa por sus puentes, su vino dulce y sus espectaculares azulejos.",
+                "Última pista: Está muy cerquita, cruzando la frontera oeste con Portugal."
+            ];
+            
+            let pistaActual = 0;
+            const btnClue = document.getElementById("btn-clue");
+            const clueText = document.getElementById("clue-text");
+
+            btnClue.addEventListener("click", () => {
+                if (navigator.vibrate) navigator.vibrate(50);
+                clueText.style.opacity = 0;
+                setTimeout(() => {
+                    clueText.innerText = pistas[pistaActual];
+                    clueText.style.opacity = 1;
+                    pistaActual++;
+                    if (pistaActual >= pistas.length) {
+                        btnClue.style.display = "none";
+                    }
+                }, 300);
+            });
+
+            const btnUnlockDest = document.getElementById("btn-unlock-dest");
+            const inputDest = document.getElementById("input-dest");
+            const errorDest = document.getElementById("error-dest");
+            const successDest = document.getElementById("success-dest");
+            
+            function verificarDestino() {
+                const valNormalizado = normalizarTexto(inputDest.value);
+                const esCorrecta = respuestasDestino.some(val => valNormalizado.includes(val));
+
+                if (esCorrecta) {
+                    if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
+                    errorDest.classList.add("hidden");
+
+                    const contentElements = stageDest.querySelectorAll('.door-content, .door-footer');
+                    contentElements.forEach(el => el.classList.add("fade-out-fast"));
+                    
+                    setTimeout(() => {
+                        successDest.classList.remove("hidden");
+                        successDest.classList.add("animate-fade-in-up");
+                    }, 800);
+
+                    // LA MAGIA DE TRANSICIÓN AL BILLETE Y FONDO DE OPORTO
+                    setTimeout(() => {
+                        successDest.classList.remove("animate-fade-in-up");
+                        successDest.classList.add("fade-out-fast");
+                        
+                        setTimeout(() => {
+                            stageDest.classList.add("hidden");
+                            
+                            // 1. CAMBIAMOS FONDO A OPORTO Y BAJAMOS EL BLUR CASI A CERO
+                            bgImage.src = "assets/photos/oporto_fondo.jpg"; 
+                            document.getElementById("bg-media").style.filter = "blur(0px)"; // <--- ¡AQUÍ ESTÁ LA MAGIA! Baja de 6px a 2px
+                            document.getElementById("bg-darkness").style.backgroundColor = "transparent";
+                            
+                            // 2. Mostramos la pantalla final transparente
+                            unlockedScreen.classList.remove("hidden");
+                            
+                            // 3. Reseteamos a mano las animaciones
+                            const anims = unlockedScreen.querySelectorAll(".animate-fade-in-up");
+                            anims.forEach(el => {
+                                el.classList.remove("animate-fade-in-up");
+                                void el.offsetWidth;
+                                el.classList.add("animate-fade-in-up");
+                            });
+
+                        }, 800);
+                    }, 3500);
+
+                } else {
+                    if (navigator.vibrate) navigator.vibrate(200);
+                    errorDest.classList.remove("hidden");
+                    inputDest.classList.remove("shake");
+                    void inputDest.offsetWidth; 
+                    inputDest.classList.add("shake");
+                }
+            }
+
+            btnUnlockDest.addEventListener("click", verificarDestino);
+            inputDest.addEventListener("keypress", (e) => {
+                if (e.key === "Enter") { e.preventDefault(); inputDest.blur(); verificarDestino(); }
+            });
+        });
+    </script>
+</body>
+</html>

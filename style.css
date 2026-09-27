@@ -1,0 +1,1797 @@
+/* =================================================
+   VARIABLES Y RESET (ESTÉTICA APPLE CLEAN)
+================================================== */
+:root {
+    --color-text: #ffffff;
+    --color-text-muted: rgba(255, 255, 255, 0.7);
+    
+    /* Luces atmosféricas limpias */
+    --light-ice: rgba(255, 255, 255, 0.15);
+    --light-silver: rgba(200, 210, 230, 0.12);
+    --light-midnight: rgba(100, 130, 180, 0.15);
+    
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+    --font-serif: "Playfair Display", "Georgia", serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased; /* Suavizado de fuente Apple */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* =================================================
+   PANTALLA DE PORTADA (LAYOUT)
+================================================== */
+.landing-screen {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =================================================
+   FONDOS Y EFECTOS
+================================================== */
+.landing-media {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+}
+
+.landing-image {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    animation: slowZoom 30s ease-out forwards;
+}
+
+.landing-base-dark {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.55); /* Ligeramente más oscuro para leer texto largo */
+    z-index: 2;
+}
+
+/* --- LUCES AMBIENTALES ULTRA-CLEAN --- */
+.ambient-lights {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 3;
+    overflow: hidden;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.light-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    animation: drift 18s infinite alternate ease-in-out;
+}
+
+.light-1 { width: 350px; height: 350px; background: var(--light-ice); top: -10%; left: -20%; animation-delay: 0s; }
+.light-2 { width: 450px; height: 450px; background: var(--light-midnight); bottom: -20%; right: -20%; animation-delay: -5s; animation-duration: 22s; }
+.light-3 { width: 250px; height: 250px; background: var(--light-silver); top: 35%; left: 50%; animation-delay: -9s; animation-duration: 25s; }
+
+/* Viñeta sutil en los bordes */
+.landing-vignette {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 5;
+    background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.85) 150%);
+}
+
+/* =================================================
+   CONTENIDO (TEXTOS Y BOTÓN)
+================================================== */
+.landing-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 4rem 1.5rem 3rem 1.5rem; /* Más aire */
+}
+
+/* Cabecera */
+.landing-header { text-align: center; }
+
+.landing-date {
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+/* Centro */
+.landing-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Separación entre el título y el párrafo */
+    padding: 0 1rem;
+}
+
+.landing-title {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    text-shadow: 0 4px 30px rgba(255, 255, 255, 0.3);
+}
+
+.landing-message {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.6; /* Interlineado elegante */
+    color: rgba(255, 255, 255, 0.85); /* Un blanco apenas apagado para leer bien */
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem; /* Separación entre los párrafos */
+}
+
+/* Botón Glassmorphism Minimalista */
+.landing-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.continue-button {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 40px;
+    padding: 1.1rem 2.2rem;
+    color: rgba(255,255,255,0.95);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    outline: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.continue-button:active {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.continue-arrow {
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    font-weight: 300;
+}
+
+.continue-button:hover .continue-arrow {
+    transform: translateX(6px);
+}
+
+/* =================================================
+   SISTEMA DE ANIMACIONES ESCALONADAS
+================================================== */
+.animate-fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.7s; }
+.delay-3 { animation-delay: 1.2s; }
+.delay-4 { animation-delay: 1.8s; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; filter: blur(4px); transform: translateY(20px); }
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+@keyframes slowZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+@keyframes drift {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(5%, 8%) scale(1.05); }
+    66% { transform: translate(-5%, -5%) scale(0.95); }
+    100% { transform: translate(3%, -8%) scale(1.02); }
+}
+
+/* Transición de salida JS */
+.fade-out {
+    opacity: 0 !important;
+    transition: opacity 1.2s ease-out;
+}
+
+/* =================================================
+   CLASES PARA CAMBIO DE PANTALLAS (NUEVO)
+================================================== */
+.hidden {
+    display: none !important;
+}
+
+.fade-out-fast {
+    opacity: 0 !important;
+    filter: blur(10px);
+    transition: opacity 0.8s ease-out, filter 0.8s ease-out;
+}
+
+/* =================================================
+   PANTALLA DE LA CARTA (AÑADIR AL FINAL DEL CSS)
+================================================== */
+.app-container {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto cristal ultra-difuminado para el fondo de la carta */
+.blur-background {
+    filter: blur(25px);
+    transform: scale(1.1); /* Escalar para evitar bordes transparentes por el blur */
+}
+
+.opacity-heavy {
+    background-color: rgba(0, 0, 0, 0.7) !important; /* Más oscuro para leer bien */
+}
+
+/* Estructura de la carta */
+.letter-section {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 4rem 1.5rem 3rem 1.5rem;
+    overflow-y: auto; /* Permite scroll si la carta es muy larga en pantallas pequeñas */
+}
+
+/* Título de la carta */
+.letter-header {
+    margin-bottom: 2.5rem;
+    text-align: left; /* Alineado a la izquierda para toque editorial */
+    padding-left: 0.5rem;
+}
+
+.letter-title {
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 1rem;
+    display: inline-block;
+}
+
+/* Cuerpo de la carta */
+.letter-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+    flex-grow: 1; /* Empuja el botón hacia abajo */
+}
+
+.letter-body p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.02em;
+}
+
+/* Botón de la carta (centrado abajo) */
+.letter-footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    margin-top: auto;
+}
+
+/* Delays adicionales para los párrafos */
+.delay-5 { animation-delay: 2.2s; }
+.delay-6 { animation-delay: 2.8s; }
+
+/* =================================================
+   ESTILOS DE LAS PUERTAS / ACERTIJOS (AÑADIR AL FINAL)
+================================================== */
+
+.door-section {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 3rem 1.5rem;
+}
+
+.door-content {
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.door-number {
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.door-title {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 1.1;
+    color: #ffffff;
+    margin-bottom: 2rem;
+}
+
+.door-question {
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+    padding: 0 1rem;
+}
+
+/* El input estilo Apple */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.apple-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+    color: #ffffff;
+    font-size: 1.1rem;
+    text-align: center;
+    font-family: var(--font-sans);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.apple-input:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.apple-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.error-text {
+    font-size: 0.85rem;
+    color: #ff6b6b; /* Un rojo coral suave */
+    font-weight: 400;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.error-text.show {
+    opacity: 1;
+}
+
+/* Animación de error (Temblor) */
+.shake {
+    animation: shake-animation 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake-animation {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.door-footer {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+/* Para la revelación */
+.memory-text {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #ffffff;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1rem;
+}
+
+/* Clases para transiciones mágicas de fondo */
+.transition-blur {
+    transition: filter 1.5s ease-out;
+}
+
+.transition-opacity {
+    transition: background-color 1.5s ease-out;
+}
+
+.unblurred {
+    filter: blur(0px) !important;
+}
+
+.opacity-light {
+    background-color: rgba(0, 0, 0, 0.2) !important; /* Deja ver la foto perfecta */
+}
+
+/* =================================================
+   PANTALLA: CINE INMERSIVO ONÍRICO (LAYOUTS HORIZONTALES Y FUNDIDOS)
+================================================== */
+.memory-screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 20;
+    overflow: hidden; 
+    background-color: #000;
+    animation: fadeIn 1s ease-in forwards;
+}
+
+.dynamic-media-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+}
+
+.media-layer {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    transition: opacity 2.5s ease-in-out; 
+}
+
+.layer-active { opacity: 1; z-index: 2; }
+.layer-hidden { opacity: 0; z-index: 1; }
+
+/* Base de la cuadrícula geométrica */
+.layout-grid {
+    width: 100%; height: 100%;
+    display: grid; gap: 0;
+    background-color: #000;
+}
+
+/* =====================================
+   NUEVOS LAYOUTS (SOLO HORIZONTALES)
+   ===================================== */
+/* 3 Fotos: 1 ancha arriba, 2 abajo (mitad y mitad) */
+.layout-3 { grid-template-columns: 1fr 1fr; grid-template-rows: 55% 45%; }
+.layout-3 .item-0 { grid-column: 1 / 3; }
+
+/* 3 Fotos Alt: 2 arriba (mitad y mitad), 1 ancha abajo */
+.layout-3-alt1 { grid-template-columns: 1fr 1fr; grid-template-rows: 45% 55%; }
+.layout-3-alt1 .item-2 { grid-column: 1 / 3; }
+
+/* 2 Fotos: 1 ancha arriba, 1 ancha abajo */
+.layout-2 { grid-template-columns: 1fr; grid-template-rows: 50% 50%; }
+.layout-2 .item-0, .layout-2 .item-1 { grid-column: 1 / 2; }
+
+
+/* =====================================
+   EFECTO DE FUNDIDO EN BORDES (TRANSPARENCIA TRASLÚCIDA)
+   ===================================== */
+.media-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* MAGIA: Hace que los bordes de la foto se vuelvan transparentes suavemente */
+    -webkit-mask-image: radial-gradient(ellipse 98% 98% at 50% 50%, black 80%, transparent 100%);
+    mask-image: radial-gradient(ellipse 98% 98% at 50% 50%, black 80%, transparent 100%);
+}
+
+.media-fit {
+    width: 100%; height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.edge-blend {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Quitamos el humo negro y ponemos un brillo de cristal traslúcido hiper sutil */
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.08); 
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* =====================================
+   CAPAS DE TEXTO Y SUPERPOSICIÓN
+   ===================================== */
+.media-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(
+        to bottom, 
+        rgba(0,0,0,0.6) 0%, 
+        transparent 30%, 
+        transparent 60%, 
+        rgba(0,0,0,0.85) 100%
+    );
+    z-index: 10;
+    pointer-events: none;
+}
+
+.memory-content {
+    position: relative;
+    z-index: 20;
+    display: flex; flex-direction: column;
+    height: 100%; padding: 3rem 1.5rem;
+}
+
+.text-transition {
+    transition: opacity 0.8s ease-in-out;
+}
+
+/* =================================================
+   PUERTA 2: ESTÉTICA DE CONCIERTO EXAGERADA
+================================================== */
+/* Luces de neón más opacas y saturadas */
+.concert-lights .neon-1 {
+    background: rgba(192, 132, 252, 0.45); /* Morado potente */
+    width: 450px; height: 450px;
+    top: -15%; right: -25%;
+    filter: blur(80px);
+}
+.concert-lights .neon-2 {
+    background: rgba(56, 189, 248, 0.4); /* Azul cian eléctrico */
+    width: 350px; height: 350px;
+    bottom: -15%; left: -20%;
+    filter: blur(70px);
+}
+.concert-lights .neon-3 {
+    background: rgba(225, 29, 72, 0.35); /* Rojo rosado fuerte */
+    width: 300px; height: 300px;
+    top: 40%; left: 35%;
+    filter: blur(80px);
+}
+
+/* Animaciones de pulso al ritmo de la música para los neones */
+.pulse-fast { animation: concertPulse 3s infinite alternate ease-in-out; }
+.pulse-slow { animation: concertPulse 5s infinite alternate ease-in-out; }
+
+@keyframes concertPulse {
+    0% { transform: scale(0.9) translate(0, 0); opacity: 0.7; }
+    50% { transform: scale(1.1) translate(5%, -5%); opacity: 1; }
+    100% { transform: scale(0.95) translate(-5%, 5%); opacity: 0.8; }
+}
+
+/* Efecto Láser / Focos cruzando la pantalla */
+.laser-beam {
+    position: absolute;
+    width: 250%;
+    height: 40px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), rgba(192,132,252,0.8), transparent);
+    filter: blur(8px);
+    mix-blend-mode: screen;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.beam-1 {
+    top: 20%; left: -50%;
+    transform: rotate(35deg);
+    animation: sweepLaser 7s infinite ease-in-out;
+}
+
+.beam-2 {
+    bottom: 30%; right: -50%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), rgba(56,189,248,0.8), transparent);
+    transform: rotate(-45deg);
+    animation: sweepLaser 9s infinite ease-in-out reverse;
+}
+
+@keyframes sweepLaser {
+    0% { transform: translateY(-400px) rotate(35deg); opacity: 0; }
+    30% { opacity: 0.8; }
+    70% { opacity: 0.6; }
+    100% { transform: translateY(600px) rotate(35deg); opacity: 0; }
+}
+
+/* Botón y campo de texto brillando */
+.neon-input {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(192, 132, 252, 0.4) !important;
+    box-shadow: 0 0 20px rgba(192, 132, 252, 0.2);
+}
+.neon-input:focus {
+    border-color: rgba(192, 132, 252, 1) !important;
+    box-shadow: 0 0 25px rgba(192, 132, 252, 0.5) !important;
+}
+
+.neon-button {
+    background: rgba(192, 132, 252, 0.15) !important;
+    border-color: rgba(192, 132, 252, 0.5) !important;
+    box-shadow: 0 0 20px rgba(192, 132, 252, 0.3) !important;
+}
+.neon-button:hover, .neon-button:active {
+    background: rgba(192, 132, 252, 0.3) !important;
+    box-shadow: 0 0 30px rgba(192, 132, 252, 0.6) !important;
+}
+
+/* Animación de flash (fogonazo) */
+.flash-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: white;
+    z-index: 50; 
+    pointer-events: none;
+    opacity: 0;
+}
+.flash-animation { animation: strobeLight 0.8s ease-out forwards; }
+@keyframes strobeLight {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    30% { opacity: 0; }
+    40% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+/* =================================================
+   PUERTA 3: ESTÉTICA DE VUELO / RADAR LIDAR
+================================================== */
+/* Línea de escaneo láser (baja y sube) */
+.lidar-scanner {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: rgba(74, 222, 128, 0.8);
+    box-shadow: 0 0 15px rgba(74, 222, 128, 1);
+    z-index: 5;
+    animation: scanLine 4s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes scanLine {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Cruz central tipo mira / cámara */
+.hud-crosshair {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px; height: 200px;
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    border-radius: 50%;
+    z-index: 4;
+    pointer-events: none;
+}
+.hud-crosshair::before, .hud-crosshair::after {
+    content: ''; position: absolute; background: rgba(74, 222, 128, 0.4);
+}
+.hud-crosshair::before { top: 50%; left: -20px; right: -20px; height: 1px; }
+.hud-crosshair::after { left: 50%; top: -20px; bottom: -20px; width: 1px; }
+
+/* Datos de vuelo en las esquinas */
+.hud-data {
+    position: absolute;
+    font-family: monospace;
+    color: rgba(74, 222, 128, 0.6);
+    font-size: 0.85rem;
+    z-index: 4;
+    pointer-events: none;
+}
+.top-left { top: 2rem; left: 1.5rem; }
+.top-right { top: 2rem; right: 1.5rem; text-align: right; }
+
+/* Input tipo terminal verde */
+.hud-input {
+    background: rgba(0, 20, 0, 0.4) !important;
+    border: 1px solid rgba(74, 222, 128, 0.5) !important;
+    color: #4ade80 !important;
+    font-family: monospace !important;
+    border-radius: 4px !important; /* Más cuadrado, menos Apple */
+}
+.hud-input:focus {
+    border-color: rgba(74, 222, 128, 1) !important;
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.3) !important;
+}
+.hud-input::placeholder { color: rgba(74, 222, 128, 0.4) !important; }
+
+/* Botón terminal */
+.hud-button {
+    background: rgba(74, 222, 128, 0.1) !important;
+    border: 1px solid rgba(74, 222, 128, 0.5) !important;
+    border-radius: 4px !important;
+    color: #4ade80 !important;
+}
+.hud-button:hover, .hud-button:active {
+    background: rgba(74, 222, 128, 0.3) !important;
+}  
+
+/* =================================================
+   PUERTA 4: LA CARTA (MENÚ CLANDESTINO BURDEOS)
+================================================== */
+
+/* Fondo Burdeos elegante (Degradado radial estilo vino tinto) */
+.menu-screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 20;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; 
+    /* El degradado mágico */
+    background: radial-gradient(circle at top center, #380b18 0%, #17040a 50%, #050102 100%);
+    animation: slideUpFade 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.menu-paper {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 3rem 0;
+    color: #f8f9fa;
+}
+
+/* Cabecera del menú */
+.menu-header { text-align: center; padding: 0 2rem; margin-bottom: 3rem; }
+.menu-year { color: #d4af37; letter-spacing: 0.25em; font-size: 0.85rem; margin-bottom: 0.5rem; }
+.menu-main-title { font-family: var(--font-serif); font-size: 3rem; font-weight: 400; color: #ffffff; }
+.menu-divider { height: 1px; width: 60px; background-color: #d4af37; margin: 1.5rem auto; }
+.menu-intro { font-weight: 300; font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.6; }
+
+/* Platos (Tiempos) */
+.menu-course {
+    margin-bottom: 3.5rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding-bottom: 2rem;
+}
+.course-title {
+    font-family: var(--font-serif); font-style: italic;
+    color: #d4af37; font-size: 1.8rem; font-weight: 400;
+    text-align: center; margin-bottom: 2.5rem;
+}
+
+/* =================================================
+   NUEVO: INTERFAZ DE PLATOS BLOQUEADOS (DILEMA A/B)
+================================================== */
+.course-lock {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    padding: 2.5rem 1.5rem;
+    margin: 0 1.5rem 2rem 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: opacity 0.4s ease;
+}
+
+.lock-question {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+.dilemma-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* En pantallas más grandes, los botones se ponen uno al lado del otro */
+@media (min-width: 400px) {
+    .dilemma-buttons {
+        flex-direction: row;
+    }
+}
+
+.dilemma-btn {
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #d4af37;
+    padding: 0.9rem 1.2rem;
+    border-radius: 4px;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.dilemma-btn:active {
+    background: rgba(212, 175, 55, 0.2);
+    transform: scale(0.95);
+}
+
+.mini-error {
+    color: #ef4444; 
+    font-size: 0.85rem; 
+    margin-top: 1.2rem;
+}
+
+/* =================================================
+   ESTÉTICA DEL MENÚ YA DESBLOQUEADO
+================================================== */
+.restaurant-item { margin-bottom: 3rem; }
+.rest-name {
+    font-family: var(--font-sans); font-size: 1.1rem; font-weight: 400;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: #ffffff; margin-bottom: 1rem; padding: 0 1.5rem;
+    border-left: 3px solid #d4af37; margin-left: 1.5rem;
+}
+
+.horizontal-gallery {
+    display: flex; overflow-x: auto; gap: 1rem;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    scroll-snap-type: x mandatory; scrollbar-width: none;
+}
+.horizontal-gallery::-webkit-scrollbar { display: none; }
+
+.rest-photo {
+    flex: 0 0 85%; height: 280px; object-fit: cover;
+    border-radius: 8px; scroll-snap-align: center;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+.single-photo { flex: 0 0 100%; }
+
+.menu-bottom-footer { display: flex; justify-content: center; padding: 2rem 0 4rem 0; }
+
+/* =================================================
+   DESENFOQUE LIGERO (PARA LEER TEXTOS SOBRE FOTOS)
+================================================== */
+.light-blur {
+    filter: blur(5px) !important;
+    transform: scale(1.05); /* Escala un pelín para que no queden bordes blancos en los lados por culpa del blur */
+}
+
+/* =================================================
+   PUERTA 5: ESTÉTICA WELLNESS PREMIUM (Elegante & Deportiva)
+================================================== */
+/* Luces suaves y profundas (Teal, Aguamarina y Azul Marino) */
+.wellness-lights .well-1 {
+    background: rgba(45, 212, 191, 0.25); /* Aguamarina elegante */
+    width: 450px; height: 450px;
+    top: -15%; right: -20%;
+    filter: blur(80px);
+    animation-duration: 15s;
+}
+.wellness-lights .well-2 {
+    background: rgba(15, 118, 110, 0.35); /* Teal oscuro profundo */
+    width: 350px; height: 350px;
+    bottom: -10%; left: -15%;
+    filter: blur(90px);
+    animation-duration: 18s;
+}
+
+/* Input estilo cristal pulido (Glassmorphism sutil) */
+.wellness-input {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(45, 212, 191, 0.3) !important;
+    border-radius: 30px !important; 
+    color: #ffffff !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.05em;
+    padding: 1.1rem !important;
+    text-align: center;
+    backdrop-filter: blur(20px);
+}
+.wellness-input:focus {
+    border-color: rgba(45, 212, 191, 0.8) !important;
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.2) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+.wellness-input::placeholder { color: rgba(255, 255, 255, 0.4) !important; }
+
+/* Botón elegante y sutil (Minimalista) */
+.wellness-button {
+    background: rgba(45, 212, 191, 0.05) !important;
+    border: 1px solid rgba(45, 212, 191, 0.4) !important;
+    border-radius: 40px !important;
+    color: #99f6e4 !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 400 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 1rem 2.5rem !important;
+    transition: all 0.4s ease !important;
+    backdrop-filter: blur(10px);
+}
+.wellness-button:hover, .wellness-button:active {
+    background: rgba(45, 212, 191, 0.15) !important;
+    border-color: rgba(45, 212, 191, 0.8) !important;
+    transform: translateY(-2px) scale(0.98) !important;
+    color: #ffffff !important;
+}
+
+/* =================================================
+   EL GRAN FINAL (BILLETE DE AVIÓN Y ÁLBUM)
+================================================== */
+
+/* Luces Doradas Mágicas */
+.final-lights .finale-1 {
+    background: rgba(251, 191, 36, 0.25); /* Dorado cálido */
+    width: 450px; height: 450px;
+    top: -10%; left: -20%;
+    filter: blur(90px);
+    animation-duration: 15s;
+}
+.final-lights .finale-2 {
+    background: rgba(255, 255, 255, 0.15); /* Blanco brillante */
+    width: 350px; height: 350px;
+    bottom: -10%; right: -15%;
+    filter: blur(80px);
+    animation-duration: 20s;
+}
+
+/* Caja de Pistas (Hint Box) */
+.clue-container {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+.clue-text {
+    color: #fde68a;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    transition: opacity 0.3s ease;
+    min-height: 3rem; /* Para que no salte mucho la interfaz al cambiar la frase */
+}
+.btn-clue {
+    background: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.6);
+    color: #fbbf24;
+    padding: 0.6rem 1.5rem;
+    border-radius: 20px;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.btn-clue:active { background: rgba(251, 191, 36, 0.4); }
+
+/* Inputs Finales */
+.finale-input {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid rgba(251, 191, 36, 0.5) !important;
+    border-radius: 0 !important;
+    color: #fbbf24 !important;
+    font-family: var(--font-serif) !important;
+    font-size: 1.5rem !important;
+    text-align: center;
+}
+.finale-input:focus { border-bottom-color: #fbbf24 !important; }
+.finale-input::placeholder { color: rgba(251, 191, 36, 0.3) !important; }
+
+.finale-button {
+    background: #fbbf24 !important;
+    border: none !important;
+    border-radius: 30px !important;
+    color: #000 !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.final-scroll-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+}
+
+/* El Billete de Avión estilo Boarding Pass */
+.boarding-pass {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(251, 191, 36, 0.15);
+    margin-bottom: 4rem;
+}
+.bp-header {
+    background: #000000;
+    color: #ffffff;
+    padding: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+.bp-body {
+    padding: 2rem 1.5rem;
+    color: #1a1a1a;
+}
+.route {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed #e5e7eb;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.city h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #000;
+    margin: 0;
+    line-height: 1;
+}
+.city p {
+    font-size: 0.9rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.5rem;
+}
+.city:last-child { text-align: right; }
+.plane-icon { font-size: 2rem; color: #fbbf24; }
+
+.details { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.detail-item { display: flex; flex-direction: column; }
+.detail-item .label { font-size: 0.75rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+.detail-item .value { font-size: 1.1rem; font-weight: 600; color: #000; }
+
+.bp-footer {
+    background: #f3f4f6;
+    padding: 1.5rem;
+    text-align: center;
+}
+.barcode { font-family: 'Courier New', Courier, monospace; font-size: 2rem; letter-spacing: -2px; color: #000; margin-bottom: 0.5rem; }
+.bp-footer p { font-size: 0.75rem; color: #6b7280; letter-spacing: 0.2em; font-weight: 600; }
+
+
+/* Sección de Tomas Falsas */
+.bloopers-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: #fbbf24;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+.bloopers-subtitle {
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+/* Carta Final */
+.final-letter {
+    margin-top: 4rem;
+    padding: 0 1rem;
+    text-align: center;
+}
+.final-letter p {
+    color: rgba(255,255,255,0.9);
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+.final-letter .signature {
+    margin-top: 3rem;
+    color: #fbbf24;
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+/* =================================================
+   LA CAJA FUERTE (CÓDIGO PIN)
+================================================== */
+.riddles-container {
+    background: rgba(251, 191, 36, 0.05);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+    border-left: 3px solid #fbbf24;
+    text-align: left;
+}
+.riddles-container p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+.riddles-container p:last-child {
+    margin-bottom: 0;
+}
+.riddles-container strong {
+    color: #fbbf24;
+    margin-right: 0.5rem;
+}
+
+.pin-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.pin-input {
+    width: 60px;
+    height: 70px;
+    font-size: 2.5rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    border-radius: 12px;
+    color: #fbbf24;
+    font-family: var(--font-serif);
+    transition: all 0.3s ease;
+    /* Quitar las flechitas de subir/bajar número en navegadores */
+    -moz-appearance: textfield;
+}
+.pin-input::-webkit-outer-spin-button,
+.pin-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.pin-input:focus {
+    border-color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+    outline: none;
+    transform: translateY(-5px);
+}
+.pin-input::placeholder {
+    color: rgba(251, 191, 36, 0.2);
+}
+
+/* =================================================
+   EL GRAN FINAL (OBSIDIANA, APPLE, CRISTAL)
+================================================== */
+
+/* Luces sutiles plata y cristal (Más grandes y difusas) */
+.mystic-lights .mystic-1 {
+    background: rgba(255, 255, 255, 0.08); 
+    width: 600px; height: 600px;
+    top: -10%; left: -20%;
+    filter: blur(120px);
+    animation-duration: 20s;
+}
+.mystic-lights .mystic-2 {
+    background: rgba(212, 225, 240, 0.06); 
+    width: 500px; height: 500px;
+    bottom: -10%; right: -15%;
+    filter: blur(140px);
+    animation-duration: 25s;
+}
+
+/* Tipografías elegantes */
+.mystic-accent {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    font-size: 0.85rem;
+}
+.mystic-title {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.mystic-text {
+    font-weight: 300;
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+}
+
+/* Input individual enorme y minimalista */
+.mystic-input-group {
+    margin-top: 3rem;
+    text-align: center;
+    position: relative;
+}
+.mystic-single-input {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 0 !important;
+    color: #ffffff !important;
+    font-family: var(--font-serif) !important;
+    font-size: 4.5rem !important;
+    font-weight: 300 !important;
+    text-align: center;
+    width: 120px;
+    padding: 0 0 10px 0 !important;
+    transition: all 0.4s ease;
+    -moz-appearance: textfield;
+}
+.mystic-single-input::-webkit-outer-spin-button,
+.mystic-single-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.mystic-single-input:focus {
+    border-bottom-color: #ffffff !important;
+    box-shadow: 0 15px 15px -15px rgba(255, 255, 255, 0.4) !important;
+    outline: none;
+}
+.mystic-single-input::placeholder { color: rgba(255, 255, 255, 0.1) !important; }
+
+/* ANIMACIONES DE ÉXITO Y ERROR */
+.mystic-error {
+    color: #fca5a5;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin-top: 1.5rem;
+}
+.mystic-success-msg {
+    color: #d4af37; /* Dorado muy suave */
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    margin-top: 1.5rem;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+.mystic-input-success {
+    color: #d4af37 !important;
+    border-bottom-color: #d4af37 !important;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5) !important;
+    box-shadow: 0 15px 15px -15px rgba(212, 175, 55, 0.3) !important;
+}
+
+/* Botón elegante estilo cristal */
+.mystic-button {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 40px !important;
+    color: #ffffff !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 300 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 1.2rem 3.5rem !important;
+    backdrop-filter: blur(15px);
+    transition: all 0.4s ease !important;
+}
+.mystic-button:hover, .mystic-button:active {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: scale(0.98);
+}
+
+/* ANIMACIÓN DEL CÓDIGO FINAL 537 */
+.final-code-display {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+.code-slot {
+    font-family: var(--font-serif);
+    font-size: 5.5rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.05); /* Empieza casi invisible */
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.glow-number {
+    color: #ffffff;
+    text-shadow: 0 0 35px rgba(255, 255, 255, 0.9);
+    transform: scale(1.1);
+}
+.mystic-success {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: #d4af37;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/* =================================================
+   FONDO PREMIUM ANIMADO Y TEXTURA CINEMATOGRÁFICA
+================================================== */
+.mystic-premium-bg {
+    /* Un degradado oscuro y rico (Azul medianoche, Negro Carbón, Ciruela muy oscuro) */
+    background: linear-gradient(135deg, #090c15 0%, #161224 50%, #05070a 100%);
+    background-size: 200% 200%;
+    animation: premiumBreathing 18s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animación que mueve los colores lentamente de un lado a otro */
+@keyframes premiumBreathing {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* El ruido (Grain) que le da ese aspecto mate carísimo */
+.noise-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Generamos ruido blanco usando SVG directamente en CSS */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.05; /* Súper sutil, apenas un 5% de opacidad */
+    pointer-events: none; /* Para que no moleste al tocar los botones */
+    z-index: 2; /* Por encima del fondo pero por debajo del cristal y el texto */
+}
+
+/* =================================================
+   INTERFAZ DE PISTAS (OPORTO)
+================================================== */
+.mystic-clue-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    backdrop-filter: blur(15px);
+    text-align: center;
+}
+.mystic-clue-text {
+    color: #d4af37; /* Dorado muy elegante para las pistas */
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    min-height: 3.5rem; /* Evita que la caja salte de tamaño al cambiar texto */
+    transition: opacity 0.3s ease;
+}
+
+/* Input de texto elegante para escribir "Oporto" */
+.mystic-text-input {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 0 !important;
+    color: #ffffff !important;
+    font-family: var(--font-sans) !important;
+    font-size: 1.5rem !important;
+    font-weight: 300 !important;
+    text-align: center;
+    width: 80%;
+    padding: 0.5rem !important;
+    transition: all 0.4s ease;
+}
+.mystic-text-input:focus {
+    border-bottom-color: #ffffff !important;
+    box-shadow: 0 10px 10px -10px rgba(255, 255, 255, 0.4) !important;
+    outline: none;
+}
+.mystic-text-input::placeholder {
+    color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* =================================================
+   INTERFAZ SIN SCROLL Y PISTAS COMPACTAS (OPORTO)
+================================================== */
+/* Forzar que la sección ocupe exacto el alto de la pantalla */
+.no-scroll-stage {
+    height: 100vh;
+    height: 100dvh; /* Soporte moderno para móviles */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-compact {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.compact-footer {
+    padding-bottom: 2rem; /* Menos padding abajo */
+}
+
+.mystic-clue-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.2rem;
+    margin-top: 1rem;
+    backdrop-filter: blur(15px);
+    text-align: center;
+}
+.mystic-clue-text {
+    color: #d4af37; 
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.05rem; /* Un pelín más pequeño para que quepa bien */
+    font-weight: 300;
+    margin-bottom: 1rem;
+    min-height: 3rem; 
+    transition: opacity 0.3s ease;
+    line-height: 1.4;
+}
+
+.clue-btn-compact {
+    padding: 0.7rem 1.8rem !important;
+    font-size: 0.85rem !important;
+}
+
+.compact-input {
+    margin-top: 1.5rem !important;
+}
+
+.mystic-text-input {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 0 !important;
+    color: #ffffff !important;
+    font-family: var(--font-sans) !important;
+    font-size: 1.5rem !important;
+    font-weight: 300 !important;
+    text-align: center;
+    width: 80%;
+    padding: 0.5rem !important;
+    transition: all 0.4s ease;
+}
+.mystic-text-input:focus {
+    border-bottom-color: #ffffff !important;
+    box-shadow: 0 10px 10px -10px rgba(255, 255, 255, 0.4) !important;
+    outline: none;
+}
+
+/* =================================================
+   EL BILLETE ESTILO APPLE WALLET (SIN EMOJIS, ELEGANTE)
+================================================== */
+.wallet-pass {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+/* Cabecera oscura Apple */
+.wallet-header {
+    background: #1c1c1e; /* Gris muy oscuro iOS */
+    color: #ffffff;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.wallet-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #d4af37; /* Acento dorado */
+}
+.wallet-logo svg {
+    display: block;
+}
+
+/* Cuerpo del pase */
+.wallet-body {
+    padding: 2.5rem 1.5rem;
+    background: #ffffff;
+    color: #1c1c1e;
+}
+.wallet-route {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.wallet-city h2 {
+    font-size: 3.5rem;
+    font-weight: 300; /* Tipografía extrafina elegante */
+    color: #000000;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -0.05em;
+}
+.wallet-city p {
+    font-size: 0.8rem;
+    color: #8e8e93; /* Gris sistema iOS */
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+}
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.wallet-route-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 60px;
+}
+/* Línea de puntos de la ruta */
+.wallet-route-icon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    border-top: 2px dashed #e5e5ea;
+    z-index: 1;
+}
+.wallet-route-icon svg {
+    background: #ffffff;
+    padding: 0 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.wallet-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-top: 1px solid #e5e5ea;
+    padding-top: 1.5rem;
+}
+.w-row {
+    display: flex;
+    justify-content: space-between;
+}
+.w-col {
+    display: flex;
+    flex-direction: column;
+}
+.w-label {
+    font-size: 0.7rem;
+    color: #8e8e93;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+.w-value {
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: #000000;
+}
+
+/* Código de barras / Pie de página */
+.wallet-footer {
+    background: #f2f2f7;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.wallet-barcode {
+    margin-bottom: 0.8rem;
+    color: #1c1c1e;
+}
+.wallet-barcode svg {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 250px;
+}
+
+.final-scroll-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 8rem 1.5rem; /* Margen extra abajo para leer la firma */
+}
+
+/* =================================================
+   CONTENEDOR FINAL DEL BILLETE (A pantalla completa)
+================================================== */
+.final-screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 100;
+    overflow: hidden; /* Prohibimos el scroll */
+    background-color: transparent; 
+}
+
+.full-screen-boarding-pass {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* La capa que oscurece: AHORA SÚPER TRANSPARENTE Y LIGERA */
+.glass-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Degradado ultra suave, solo para dar un pelín de contraste al texto */
+    background: linear-gradient(135deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 100%);
+    z-index: 1;
+}
+
+.fs-header, .fs-body, .fs-footer {
+    position: relative;
+    z-index: 2;
+}
+
+/* Cabecera */
+.fs-header {
+    padding: 3rem 1.5rem 1.5rem 1.5rem; /* Ajustado el margen lateral */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.fs-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+}
+.fs-class {
+    color: #d4af37;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+}
+
+/* Cuerpo central */
+.fs-body {
+    flex: 1;
+    padding: 0 1.5rem; /* REDUCIDO el padding para que 'OPO' respire y no se corte */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fs-route {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+.fs-city h2 {
+    /* MAGIA RESPONSIVE: Calcula el tamaño según el ancho del móvil para no cortarse jamás */
+    font-size: clamp(3rem, 12vw, 4.5rem); 
+    font-weight: 300;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.8); /* Sombra de texto fuerte para que se lea sobre la foto clara */
+}
+.fs-city p {
+    font-size: 1rem;
+    color: #d4af37;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 0.8rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+.fs-route-icon {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 0.5rem;
+}
+.fs-route-icon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    border-top: 2px dashed rgba(255,255,255,0.4);
+    z-index: 1;
+}
+.fs-route-icon svg {
+    background: transparent;
+    padding: 0 10px;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); /* Para que el avión destaque */
+}
+
+/* Detalles (Fecha, puerta...) */
+.fs-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 1rem;
+}
+.fs-detail-box {
+    display: flex;
+    flex-direction: column;
+}
+.fs-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+}
+.fs-value {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #ffffff;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+}
+.text-right { text-align: right; }
+
+/* Pie de página (Código de barras) */
+.fs-footer {
+    padding: 2.5rem 2rem 3rem 2rem;
+    text-align: center;
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.fs-scan-text {
+    font-size: 0.8rem;
+    color: #d4af37;
+    letter-spacing: 0.25em;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+.fs-barcode {
+    opacity: 0.85;
+}

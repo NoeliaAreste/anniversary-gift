@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Capítulo III · El Vuelo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="app-puerta3" class="app-container" style="background-color: #000;">
+        
+        <!-- FOTOGRAFÍA DE FONDO (Radar) -->
+        <div id="bg-media" class="landing-media blur-background transition-blur" aria-hidden="true" style="filter: blur(12px);">
+            <img id="bg-image" class="landing-image transition-image" src="assets/photos/helicoptero_fondo.jpg" alt="">
+        </div>
+        
+        <div id="bg-darkness" class="landing-base-dark transition-opacity" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.8);"></div>
+
+        <!-- EFECTOS HUD / RADAR TECNOLÓGICO -->
+        <div class="ambient-lights" aria-hidden="true">
+            <div class="lidar-scanner"></div>
+            <div class="hud-crosshair"></div>
+            <div class="hud-data top-left">ALT: 4500FT<br>SPD: 120KT</div>
+            <div class="hud-data top-right">LIDAR: ACTIVE<br>REC: ON</div>
+        </div>
+
+        <!-- =================================================
+             FASE 1: AUTORIZACIÓN DE VUELO
+        ================================================== -->
+        <section id="lock-screen" class="door-section">
+            <div id="riddle-content" class="door-content animate-fade-in-up delay-1">
+                <p class="door-number" style="color: #4ade80; letter-spacing: 0.3em; font-family: monospace;">CAPÍTULO III // NAVEGACIÓN</p>
+                <h2 class="door-title" style="font-family: var(--font-sans); font-weight: 300; letter-spacing: -0.02em; color: #f8fafc;">Ruta de Extracción.</h2>
+                
+                <p class="door-question" style="font-family: monospace; font-size: 1rem; color: #a3e635;">
+                    > ALERTA: Coordenadas del proyecto bloqueadas.<br><br>
+                    > Para autorizar el acceso, introduzca la ciudad donde se produjo nuestro primer reencuentro a distancia:
+                </p>
+
+                <div class="input-group">
+                    <input type="text" id="riddle-input" class="apple-input hud-input" placeholder="_destino" autocomplete="off">
+                    <p id="error-message" class="error-text hidden" style="color: #f87171; font-family: monospace;">> ERROR: Destino no reconocido.</p>
+                </div>
+            </div>
+
+            <footer id="riddle-footer" class="door-footer animate-fade-in-up delay-2">
+                <button id="btn-unlock" class="continue-button hud-button" type="button">
+                    <span class="continue-label" style="font-family: monospace; letter-spacing: 0.1em;">AUTORIZAR</span>
+                </button>
+            </footer>
+
+            <div id="success-message" class="success-message hidden">
+                <h3 class="success-title" style="font-family: var(--font-sans); font-weight: 300; color: #4ade80;">ACCESO CONCEDIDO</h3>
+                <p class="success-subtitle" style="font-family: monospace;">Recuperando datos de vuelo...</p>
+            </div>
+        </section>
+
+        <!-- =================================================
+             FASE 2: LA PELÍCULA INMERSIVA (CINE)
+        ================================================== -->
+        <section id="unlocked-screen" class="memory-screen hidden">
+            
+            <div class="dynamic-media-container">
+                <div id="media-layer-1" class="media-layer layer-active"></div>
+                <div id="media-layer-2" class="media-layer layer-hidden"></div>
+                <!-- Capa oscura inferior para que se lean los textos -->
+                <div class="media-overlay"></div>
+            </div>
+
+            <div class="memory-content">
+                <div class="memory-header">
+                    <p class="door-number" style="color: #4ade80;">Año 2026</p>
+                    <h2 class="door-title" style="margin-bottom: 0.5rem; font-size: 3rem;">El Equipo de Vuelo.</h2>
+                </div>
+
+                <div class="memory-text-container" style="margin-top: auto; margin-bottom: 2rem; text-align: center;">
+                    <p id="dynamic-story-text" class="door-question text-transition" style="font-size: 1.15rem; line-height: 1.6; text-shadow: 0 2px 10px rgba(0,0,0,0.9);">
+                        Procesando datos...
+                    </p>
+                </div>
+
+                <footer class="door-footer" style="padding-bottom: 2rem;">
+                    <!-- Botón oculto al inicio -->
+                    <button id="btn-next-door" class="continue-button" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); opacity: 0; pointer-events: none; transition: opacity 2s ease;" type="button">
+                        <span class="continue-label">Siguiente capítulo</span>
+                        <span class="continue-arrow" aria-hidden="true">→</span>
+                    </button>
+                </footer>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const respuestasValidas = ["oviedo", "en oviedo", "asturias"];
+            
+            // =====================================================
+            // EL GUIÓN (8 Fotos y 2 Vídeos)
+            // =====================================================
+            const secuenciaMemoria = [
+                {
+                    type: "grid", layout: "layout-3", 
+                    media: ["assets/photos/heli_foto_1.jpg", "assets/photos/heli_foto_2.jpg", "assets/photos/heli_foto_3.jpg"],
+                    text: "Redes de alta tensión, nubes de puntos y tú surcando los cielos.",
+                    duration: 5000
+                },
+                {
+                    type: "video",
+                    media: "assets/photos/heli_video_1.mp4",
+                    text: "Volar alto no es fácil, pero verte conseguirlo es un orgullo enorme.",
+                    duration: 6500
+                },
+                {
+                    type: "grid", layout: "layout-3-alt1", 
+                    media: ["assets/photos/heli_foto_4.jpg", "assets/photos/heli_foto_5.jpg", "assets/photos/heli_foto_6.jpg"],
+                    text: "Fue la primera vez en 7 años que los proyectos nos separaron...",
+                    duration: 5000
+                },
+                {
+                    type: "video",
+                    media: "assets/photos/heli_video_2.mp4",
+                    text: "...pero Oviedo nos enseñó que no hay kilómetros suficientes si el destino somos nosotros.",
+                    duration: 6500
+                },
+                {
+                    type: "grid", layout: "layout-2", 
+                    media: ["assets/photos/heli_foto_7.jpg", "assets/photos/heli_foto_8.jpg"],
+                    text: "A seguir conquistando el mundo (y el cielo). Juntos.",
+                    duration: 6000
+                }
+            ];
+
+            const btnUnlock = document.getElementById("btn-unlock");
+            const inputRiddle = document.getElementById("riddle-input");
+            const errorText = document.getElementById("error-message");
+            const lockScreen = document.getElementById("lock-screen");
+            const riddleContent = document.getElementById("riddle-content");
+            const riddleFooter = document.getElementById("riddle-footer");
+            const successMessage = document.getElementById("success-message");
+            const unlockedScreen = document.getElementById("unlocked-screen");
+            const bgMedia = document.getElementById("bg-media");
+            const bgDarkness = document.getElementById("bg-darkness");
+            
+            const layer1 = document.getElementById("media-layer-1");
+            const layer2 = document.getElementById("media-layer-2");
+            const storyText = document.getElementById("dynamic-story-text");
+            const btnNextDoor = document.getElementById("btn-next-door");
+            
+            let activeLayer = layer1;
+            let hiddenLayer = layer2;
+            let currentSequenceIndex = 0;
+            let movieTimeout;
+
+            function normalizarTexto(texto) {
+                return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[.,;!?]/g, "").trim();
+            }
+
+            // Efecto Terminal HUD
+            setInterval(() => {
+                const alt = document.querySelector('.hud-data.top-left');
+                if(alt && !lockScreen.classList.contains("hidden")) {
+                    let randomAlt = Math.floor(Math.random() * (4600 - 4400 + 1)) + 4400;
+                    alt.innerHTML = `ALT: ${randomAlt}FT<br>SPD: 120KT`;
+                }
+            }, 500);
+
+            // CREADOR DE LAYOUTS CON EDGE-BLEND
+            function construirLayout(step) {
+                if (step.type === "grid") {
+                    return `
+                        <div class="layout-grid ${step.layout}">
+                            ${step.media.map((src, i) => `
+                                <div class="media-wrapper item-${i}">
+                                    <img class="media-fit" src="${src}" alt="">
+                                    <div class="edge-blend"></div>
+                                </div>
+                            `).join('')}
+                        </div>`;
+                } else if (step.type === "video") {
+                    return `
+                        <div class="media-wrapper">
+                            <video class="media-fit" src="${step.media}" autoplay muted loop playsinline></video>
+                            <div class="edge-blend"></div>
+                        </div>
+                    `;
+                }
+            }
+
+            function reproducirSecuencia() {
+                const step = secuenciaMemoria[currentSequenceIndex];
+
+                if (currentSequenceIndex === secuenciaMemoria.length - 1) {
+                    btnNextDoor.style.opacity = 1;
+                    btnNextDoor.style.pointerEvents = "auto";
+                }
+
+                hiddenLayer.innerHTML = construirLayout(step);
+
+                storyText.style.opacity = 0;
+                setTimeout(() => {
+                    storyText.innerText = step.text;
+                    storyText.style.opacity = 1;
+                }, 800);
+
+                hiddenLayer.classList.remove("layer-hidden");
+                hiddenLayer.classList.add("layer-active");
+                activeLayer.classList.remove("layer-active");
+                activeLayer.classList.add("layer-hidden");
+
+                const temp = activeLayer;
+                activeLayer = hiddenLayer;
+                hiddenLayer = temp;
+
+                currentSequenceIndex++;
+                if (currentSequenceIndex >= secuenciaMemoria.length) {
+                    currentSequenceIndex = 0; 
+                }
+
+                movieTimeout = setTimeout(reproducirSecuencia, step.duration);
+            }
+
+            function verificarRespuesta() {
+                const inputNormalizado = normalizarTexto(inputRiddle.value);
+                const esCorrecta = respuestasValidas.some(val => {
+                    return inputNormalizado.includes(normalizarTexto(val));
+                });
+
+                if (esCorrecta) {
+                    if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
+                    errorText.classList.remove("show");
+
+                    // Apagamos los láseres
+                    document.querySelector('.lidar-scanner').style.opacity = 0;
+                    document.querySelector('.hud-crosshair').style.opacity = 0;
+
+                    riddleContent.classList.add("fade-out-fast");
+                    riddleFooter.classList.add("fade-out-fast");
+                        
+                    bgMedia.classList.remove("blur-background");
+                    bgMedia.classList.add("unblurred");
+                    bgDarkness.style.backgroundColor = "rgba(0,0,0,0.2)";
+                    
+                    setTimeout(() => {
+                        successMessage.classList.remove("hidden");
+                        successMessage.classList.add("animate-fade-in-up");
+                    }, 800);
+
+                    setTimeout(() => {
+                        successMessage.classList.add("fade-out-fast");
+                        setTimeout(() => {
+                            lockScreen.classList.add("hidden");
+                            unlockedScreen.classList.remove("hidden");
+                            reproducirSecuencia();
+                        }, 800);
+                    }, 3500);
+
+                } else {
+                    if (navigator.vibrate) navigator.vibrate(200);
+                    errorText.classList.add("show");
+                    inputRiddle.classList.remove("shake");
+                    void inputRiddle.offsetWidth; 
+                    inputRiddle.classList.add("shake");
+                }
+            }
+
+            if(btnUnlock) btnUnlock.addEventListener("click", verificarRespuesta);
+            if(inputRiddle) {
+                inputRiddle.addEventListener("keypress", (e) => {
+                    if (e.key === "Enter") { e.preventDefault(); inputRiddle.blur(); verificarRespuesta(); }
+                });
+            }
+
+            if(btnNextDoor) {
+                btnNextDoor.addEventListener("click", () => {
+                    if (navigator.vibrate) navigator.vibrate(50);
+                    document.getElementById("app-puerta3").classList.add("fade-out");
+                    setTimeout(() => window.location.href = "puerta4.html", 1200);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

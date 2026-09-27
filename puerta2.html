@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Capítulo II · Valencia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="app-puerta2" class="app-container" style="background-color: #000;">
+        
+        <!-- FOTOGRAFÍA DE FONDO -->
+        <div id="bg-media" class="landing-media blur-background transition-blur" aria-hidden="true" style="filter: blur(15px);">
+            <img id="bg-image" class="landing-image transition-image" src="assets/photos/valencia_concierto.jpg" alt="">
+        </div>
+        
+        <div id="bg-darkness" class="landing-base-dark transition-opacity" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.75);"></div>
+
+        <!-- LUCES DE CONCIERTO EXAGERADAS Y LÁSERES -->
+        <div class="ambient-lights concert-lights" aria-hidden="true">
+            <div class="light-blob neon-1 pulse-fast"></div>
+            <div class="light-blob neon-2 pulse-slow"></div>
+            <div class="light-blob neon-3 pulse-fast"></div>
+            
+            <!-- Láseres que barren la pantalla -->
+            <div class="laser-beam beam-1"></div>
+            <div class="laser-beam beam-2"></div>
+        </div>
+
+        <!-- FLASH/ESTROBOSCÓPICO -->
+        <div id="flash-overlay" class="flash-overlay hidden" aria-hidden="true"></div>
+
+        <!-- =================================================
+             FASE 1: EL ACERTIJO MUSICAL
+        ================================================== -->
+        <section id="lock-screen" class="door-section">
+            <div id="riddle-content" class="door-content animate-fade-in-up delay-1">
+                <p class="door-number" style="color: #c084fc; text-shadow: 0 0 10px rgba(192, 132, 252, 0.5);">Capítulo II</p>
+                <h2 class="door-title" style="text-shadow: 0 0 25px rgba(192, 132, 252, 0.8), 0 0 10px rgba(255,255,255,0.5); font-size: 3.2rem;">Luces y graves.</h2>
+                
+                <p class="door-question" style="font-weight: 400;">
+                    Completa la letra que nos dejamos la voz cantando en Valencia:<br><br>
+                    <!-- [PERSONALIZAR] Pon aquí la primera parte de la canción -->
+                    <span style="font-style: italic; color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.6);">"Flow fuera del planeta, no, no soy de Plutón..."</span>
+                </p>
+
+                <div class="input-group">
+                    <input type="text" id="riddle-input" class="apple-input neon-input" placeholder="Escribe tú como sigue..." autocomplete="off">
+                    <p id="error-message" class="error-text hidden" style="color: #fb7185; text-shadow: 0 0 10px rgba(251, 113, 133, 0.6);">Asi no era...</p>
+                </div>
+            </div>
+
+            <footer id="riddle-footer" class="door-footer animate-fade-in-up delay-2">
+                <button id="btn-unlock" class="continue-button neon-button" type="button">
+                    <span class="continue-label">Cantar</span>
+                </button>
+            </footer>
+
+            <div id="success-message" class="success-message hidden">
+                <h3 class="success-title" style="text-shadow: 0 0 30px #ffffff;">¡BRUTAL!</h3>
+                <p class="success-subtitle">Recuerdo desbloqueado</p>
+            </div>
+        </section>
+
+        <!-- =================================================
+             FASE 2: EL RECUERDO (PANTALLA COMPLETA)
+        ================================================== -->
+        <section id="unlocked-screen" class="memory-screen hidden">
+            
+            <!-- Doble Buffer para fundidos perfectos a pantalla completa -->
+            <div class="dynamic-media-container">
+                <div id="media-layer-1" class="media-layer layer-active"></div>
+                <div id="media-layer-2" class="media-layer layer-hidden"></div>
+                
+                <!-- Solo oscurecemos un poco abajo para poder leer el texto -->
+                <div class="media-overlay" style="background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(0,0,0,0.9) 100%);"></div>
+            </div>
+
+            <div class="memory-content">
+                <div class="memory-header">
+                    <p class="door-number" style="color: #b77cef;">Invierno 2026</p>
+                    <h2 class="door-title" style="margin-bottom: 0.5rem; font-size: 3rem;">Eladio Carrión.</h2>
+                </div>
+
+                <div class="memory-text-container" style="margin-top: auto; margin-bottom: 2rem; text-align: center;">
+                    <p class="door-question" style="font-size: 1.15rem; line-height: 1.6; text-shadow: 0 2px 10px rgba(0,0,0,0.9);">
+                        No hay vídeos de esta noche, y es el mejor de los regalos. Guardamos el móvil para saltar, dejarnos la voz y vivirlo de verdad, juntos. Solo nosotros y la música.
+                    </p>
+                </div>
+
+                <footer class="door-footer" style="padding-bottom: 2rem;">
+                    <!-- Botón oculto al inicio -->
+                    <button id="btn-next-door" class="continue-button" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); opacity: 0; pointer-events: none; transition: opacity 1.5s ease;" type="button">
+                        <span class="continue-label">Siguiente capítulo</span>
+                        <span class="continue-arrow" aria-hidden="true">→</span>
+                    </button>
+                </footer>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // He dejado una sola frase base, ya que nuestro nuevo código 
+            // perdonará mayúsculas, tildes y comas automáticamente.
+            const respuestasValidas = [
+                "soy de la h no estoy hablando de houston"
+            ];
+            
+            const fotosValencia = [
+                "assets/photos/valencia_concierto.jpg",
+                "assets/photos/valencia_ciudad.jpg",
+                "assets/photos/valencia_nosotros.jpg"
+            ];
+
+            const btnUnlock = document.getElementById("btn-unlock");
+            const inputRiddle = document.getElementById("riddle-input");
+            const errorText = document.getElementById("error-message");
+            const lockScreen = document.getElementById("lock-screen");
+            const riddleContent = document.getElementById("riddle-content");
+            const riddleFooter = document.getElementById("riddle-footer");
+            const successMessage = document.getElementById("success-message");
+            const unlockedScreen = document.getElementById("unlocked-screen");
+            const bgMedia = document.getElementById("bg-media");
+            const bgDarkness = document.getElementById("bg-darkness");
+            const flashOverlay = document.getElementById("flash-overlay");
+            
+            const layer1 = document.getElementById("media-layer-1");
+            const layer2 = document.getElementById("media-layer-2");
+            const btnNextDoor = document.getElementById("btn-next-door");
+            
+            let activeLayer = layer1;
+            let hiddenLayer = layer2;
+            let indexFoto = 0;
+            let botonMostrado = false;
+
+            // VERSIÓN MEJORADA: Quita mayúsculas, acentos y signos de puntuación (comas, puntos)
+            function normalizarTexto(texto) {
+                return texto.toLowerCase()
+                            .normalize("NFD")
+                            .replace(/[\u0300-\u036f]/g, "")
+                            .replace(/[.,;!?]/g, "") // Elimina la puntuación
+                            .trim();
+            }
+
+            function cambiarFotoSlideshow() {
+                if (indexFoto === 2 && !botonMostrado) {
+                    btnNextDoor.style.opacity = 1;
+                    btnNextDoor.style.pointerEvents = "auto";
+                    botonMostrado = true;
+                }
+
+                hiddenLayer.innerHTML = `<img class="media-fit" src="${fotosValencia[indexFoto]}" alt="" style="width: 100%; height: 100%; object-fit: cover;">`;
+
+                hiddenLayer.classList.remove("layer-hidden");
+                hiddenLayer.classList.add("layer-active");
+                activeLayer.classList.remove("layer-active");
+                activeLayer.classList.add("layer-hidden");
+
+                const temp = activeLayer;
+                activeLayer = hiddenLayer;
+                hiddenLayer = temp;
+
+                indexFoto++;
+                if (indexFoto >= fotosValencia.length) indexFoto = 0;
+            }
+
+            function iniciarSlideshow() {
+                activeLayer.innerHTML = `<img class="media-fit" src="${fotosValencia[indexFoto]}" alt="" style="width: 100%; height: 100%; object-fit: cover;">`;
+                indexFoto++;
+                setInterval(cambiarFotoSlideshow, 4500);
+            }
+
+            function verificarRespuesta() {
+                const inputNormalizado = normalizarTexto(inputRiddle.value);
+                
+                // Ahora comparamos perdonando todo
+                const esCorrecta = respuestasValidas.some(val => {
+                    const valNormalizado = normalizarTexto(val);
+                    return inputNormalizado.includes(valNormalizado);
+                });
+
+                if (esCorrecta) {
+                    if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
+                    errorText.classList.remove("show");
+
+                    flashOverlay.classList.remove("hidden");
+                    flashOverlay.classList.add("flash-animation");
+
+                    setTimeout(() => {
+                        riddleContent.classList.add("hidden");
+                        riddleFooter.classList.add("hidden");
+                        
+                        bgMedia.classList.remove("blur-background");
+                        bgMedia.classList.add("unblurred");
+                        bgDarkness.style.backgroundColor = "rgba(0,0,0,0.3)";
+                        
+                        successMessage.classList.remove("hidden");
+                        successMessage.classList.add("animate-fade-in-up");
+                    }, 300);
+
+                    setTimeout(() => {
+                        flashOverlay.classList.add("hidden");
+                    }, 1000);
+
+                    setTimeout(() => {
+                        successMessage.classList.add("fade-out-fast");
+                        
+                        setTimeout(() => {
+                            lockScreen.classList.add("hidden");
+                            unlockedScreen.classList.remove("hidden");
+                            iniciarSlideshow();
+                        }, 800);
+                    }, 3500);
+
+                } else {
+                    if (navigator.vibrate) navigator.vibrate(200);
+                    errorText.classList.add("show");
+                    inputRiddle.classList.remove("shake");
+                    void inputRiddle.offsetWidth; 
+                    inputRiddle.classList.add("shake");
+                }
+            }
+
+            if(btnUnlock) btnUnlock.addEventListener("click", verificarRespuesta);
+            if(inputRiddle) {
+                inputRiddle.addEventListener("keypress", (e) => {
+                    if (e.key === "Enter") { e.preventDefault(); inputRiddle.blur(); verificarRespuesta(); }
+                });
+            }
+
+            if(btnNextDoor) {
+                btnNextDoor.addEventListener("click", () => {
+                    if (navigator.vibrate) navigator.vibrate(50);
+                    document.getElementById("app-puerta2").classList.add("fade-out");
+                    setTimeout(() => window.location.href = "puerta3.html", 1200);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

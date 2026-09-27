@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Prólogo · Nuestra Historia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="app-carta" class="app-container">
+        
+        <!-- FOTOGRAFÍA DE FONDO (Con desenfoque extremo estilo cristal) -->
+        <div class="landing-media blur-background" aria-hidden="true">
+            <!-- Puedes usar la misma foto de la portada o una nueva -->
+            <img class="landing-image" src="assets/photos/cover.jpg" alt="">
+        </div>
+        
+        <div class="landing-base-dark opacity-heavy" aria-hidden="true"></div>
+
+        <!-- LUCES AMBIENTALES -->
+        <div class="ambient-lights" aria-hidden="true">
+            <div class="light-blob light-1"></div>
+            <div class="light-blob light-3"></div>
+        </div>
+
+        <!-- =================================================
+             CONTENIDO DE LA CARTA
+        ================================================== -->
+        <section class="letter-section">
+            
+            <header class="letter-header animate-fade-in-up delay-1">
+                <h1 class="letter-title">Prólogo.</h1>
+            </header>
+
+            <article class="letter-body">
+                <p class="animate-fade-in-up delay-2">
+                    Dicen que los viajes no se miden en kilómetros, sino en los momentos que coleccionamos por el camino.
+                </p>
+                <p class="animate-fade-in-up delay-3">
+                    Este último año ha estado lleno de capítulos increíbles. De risas inesperadas, de días que se hicieron cortos y de esa forma tan nuestra de entender el mundo.
+                </p>
+                <p class="animate-fade-in-up delay-4">
+                    Antes de que descubras hacia dónde apuntan nuestras brújulas ahora, quiero que te detengas un momento. 
+                </p>
+                <p class="animate-fade-in-up delay-5">
+                    Detrás de cada puerta de esta experiencia, hay un pedazo de nuestro año. Solo quien conoce nuestra historia podrá abrirlas todas.
+                </p>
+            </article>
+
+            <footer class="letter-footer animate-fade-in-up delay-6">
+                <button id="btn-to-door1" class="continue-button" type="button">
+                    <span class="continue-label">Ir a la primera puerta</span>
+                    <span class="continue-arrow" aria-hidden="true">→</span>
+                </button>
+            </footer>
+
+        </section>
+
+    </main>
+
+    <!-- ESTE ES EL SCRIPT INTEGRADO DIRECTAMENTE -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnToDoor1 = document.getElementById("btn-to-door1");
+            const appContainer = document.getElementById("app-carta");
+
+            if (btnToDoor1) {
+                btnToDoor1.addEventListener("click", () => {
+                    // Si el móvil tiene vibración, vibra un poquito
+                    if (navigator.vibrate) navigator.vibrate(50);
+                    
+                    // Inicia la transición de salida a negro
+                    appContainer.classList.add("fade-out");
+
+                    // Espera 1.2 segundos (lo que dura el fundido) y salta a la Puerta 1
+                    setTimeout(() => {
+                        window.location.href = "puerta1.html";
+                    }, 1200);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

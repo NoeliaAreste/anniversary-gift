@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1a050c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Capítulo IV · La Reserva</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="app-puerta4" class="app-container" style="background-color: #000;">
+        
+        <!-- FOTOGRAFÍA DE FONDO (Debe llamarse comida_fondo.jpg) -->
+        <div id="bg-media" class="landing-media blur-background transition-blur" aria-hidden="true" style="filter: blur(15px);">
+            <img id="bg-image" class="landing-image transition-image" src="assets/photos/comida_fondo.jpg" alt="">
+        </div>
+        
+        <div id="bg-darkness" class="landing-base-dark transition-opacity" aria-hidden="true" style="background-color: rgba(0, 0, 0, 0.75);"></div>
+
+        <div class="ambient-lights restaurant-lights" aria-hidden="true">
+            <div class="light-blob michelin-1"></div>
+            <div class="light-blob michelin-2"></div>
+        </div>
+
+        <!-- =================================================
+             FASE 1: LA RESERVA
+        ================================================== -->
+        <section id="lock-screen" class="door-section">
+            <div id="riddle-content" class="door-content animate-fade-in-up delay-1">
+                <p class="door-number" style="color: #d4af37; letter-spacing: 0.25em;">CAPÍTULO IV</p>
+                <h2 class="door-title" style="font-family: var(--font-serif); font-size: 3.5rem; color: #f8f9fa;">Mesa para dos.</h2>
+                
+                <p class="door-question" style="font-weight: 300; font-size: 1.1rem; color: rgba(255,255,255,0.85);">
+                    Bienvenidos.<br><br>
+                    Para confirmar su reserva, indique el manjar que llevamos aplazando un mes:
+                </p>
+
+                <div class="input-group">
+                    <input type="text" id="riddle-input" class="apple-input menu-input" placeholder="Reserva a nombre de..." autocomplete="off">
+                    <p id="error-message" class="error-text hidden" style="color: #ef4444;">Ese plato no está en el menú hoy...</p>
+                </div>
+            </div>
+
+            <footer id="riddle-footer" class="door-footer animate-fade-in-up delay-2">
+                <button id="btn-unlock" class="continue-button menu-button" type="button">
+                    <span class="continue-label">Confirmar</span>
+                </button>
+            </footer>
+
+            <div id="success-message" class="success-message hidden">
+                <h3 class="success-title" style="font-family: var(--font-serif); font-style: italic; color: #d4af37; font-size: 3.2rem;">Bon Appétit</h3>
+                <p class="success-subtitle" style="letter-spacing: 0.2em;">Mesa preparada</p>
+            </div>
+        </section>
+
+        <!-- =================================================
+             FASE 2: LA CARTA (MENÚ CLANDESTINO A/B)
+        ================================================== -->
+        <section id="unlocked-screen" class="menu-screen hidden">
+            
+            <div class="menu-paper">
+                
+                <header class="menu-header animate-fade-in-up delay-1">
+                    <p class="menu-year">TEMPORADA 202X</p>
+                    <h1 class="menu-main-title">Menú Degustación</h1>
+                    <div class="menu-divider"></div>
+                    <p class="menu-intro">Para saborear cada plato, deberás superar el dilema del crítico gastronómico.</p>
+                </header>
+
+                <!-- CURSO 1: AÇAÍ -->
+                <article class="menu-course animate-fade-in-up delay-2">
+                    <h2 class="course-title">Primer Tiempo: Brunch & Healthy</h2>
+                    
+                    <div class="course-lock">
+                        <p class="lock-question">¿Qué nos suele apetecer más para un buen brunch de domingo?</p>
+                        <div class="dilemma-buttons">
+                            <!-- La clase 'correct-btn' abre, la 'wrong-btn' da error -->
+                            <button class="dilemma-btn wrong-btn">Tortitas</button>
+                            <button class="dilemma-btn correct-btn">Bowls de Açaí</button>
+                        </div>
+                        <p class="mini-error hidden">El paladar no miente, piénsalo bien.</p>
+                    </div>
+
+                    <div class="course-content hidden">
+                        <div class="restaurant-item">
+                            <h3 class="rest-name">Bowls de Açaí</h3>
+                            <div class="horizontal-gallery">
+                                <img src="assets/photos/acai_1.jpg" alt="" class="rest-photo">
+                                <img src="assets/photos/acai_2.jpg" alt="" class="rest-photo">
+                            </div>
+                        </div>
+                        <div class="restaurant-item">
+                            <h3 class="rest-name">Honest Greens</h3>
+                            <div class="horizontal-gallery">
+                                <img src="assets/photos/honest_1.jpg" alt="" class="rest-photo single-photo">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CURSO 2: VIAJE POR EUROPA -->
+                <article class="menu-course animate-fade-in-up delay-3">
+                    <h2 class="course-title">Segundo Tiempo: Viaje por Europa</h2>
+                    
+                    <div class="course-lock">
+                        <p class="lock-question">Si nos dan a elegir entre estos dos destinos culinarios, nos quedamos con...</p>
+                        <div class="dilemma-buttons">
+                            <button class="dilemma-btn correct-btn">Comida Griega</button>
+                            <button class="dilemma-btn wrong-btn">Fish & Chips</button>
+                        </div>
+                        <p class="mini-error hidden">No me lo creo ni yo.</p>
+                    </div>
+
+                    <div class="course-content hidden">
+                        <div class="restaurant-item">
+                            <h3 class="rest-name">Comida Griega</h3>
+                            <div class="horizontal-gallery">
+                                <img src="assets/photos/griega_1.jpg" alt="" class="rest-photo"><img src="assets/photos/griega_2.jpg" alt="" class="rest-photo"><img src="assets/photos/griega_3.jpg" alt="" class="rest-photo"><img src="assets/photos/griega_4.jpg" alt="" class="rest-photo"><img src="assets/photos/griega_5.jpg" alt="" class="rest-photo"><img src="assets/photos/griega_6.jpg" alt="" class="rest-photo"><img src="assets/photos/griega_7.jpg" alt="" class="rest-photo"><img src="assets/photos/griega_8.jpg" alt="" class="rest-photo"><img src="assets/photos/griega_9.jpg" alt="" class="rest-photo"><img src="assets/photos/griega_10.jpg" alt="" class="rest-photo"><img src="assets/photos/griega_11.jpg" alt="" class="rest-photo"><img src="assets/photos/griega_12.jpg" alt="" class="rest-photo">
+                            </div>
+                        </div>
+                        <div class="restaurant-item">
+                            <h3 class="rest-name">Circolo Popolare & Tagliatella</h3>
+                            <div class="horizontal-gallery">
+                                <img src="assets/photos/circolo_1.jpg" alt="" class="rest-photo"><img src="assets/photos/circolo_2.jpg" alt="" class="rest-photo"><img src="assets/photos/circolo_3.jpg" alt="" class="rest-photo"><img src="assets/photos/circolo_4.jpg" alt="" class="rest-photo"><img src="assets/photos/circolo_5.jpg" alt="" class="rest-photo"><img src="assets/photos/circolo_6.jpg" alt="" class="rest-photo"><img src="assets/photos/tagliatella_1.jpg" alt="" class="rest-photo"><img src="assets/photos/tagliatella_2.jpg" alt="" class="rest-photo">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CURSO 3: EL NORTE -->
+                <article class="menu-course animate-fade-in-up delay-4">
+                    <h2 class="course-title">Tercer Tiempo: El Norte</h2>
+                    
+                    <div class="course-lock">
+                        <p class="lock-question">Cuando subo a verte a Oviedo, la dieta se rompe obligatoriamente con...</p>
+                        <div class="dilemma-buttons">
+                            <button class="dilemma-btn wrong-btn">Una Ensaladita</button>
+                            <button class="dilemma-btn correct-btn">Un Buen Cachopo</button>
+                        </div>
+                        <p class="mini-error hidden">Venga, no mientas.</p>
+                    </div>
+
+                    <div class="course-content hidden">
+                        <div class="restaurant-item">
+                            <h3 class="rest-name">El Cachopo de Oviedo</h3>
+                            <div class="horizontal-gallery">
+                                <img src="assets/photos/cachopo_1.jpg" alt="" class="rest-photo"><img src="assets/photos/cachopo_2.jpg" alt="" class="rest-photo"><img src="assets/photos/cachopo_3.jpg" alt="" class="rest-photo"><img src="assets/photos/cachopo_4.jpg" alt="" class="rest-photo">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CURSO 4: LA PERDICIÓN -->
+                <article class="menu-course animate-fade-in-up delay-5">
+                    <h2 class="course-title">Cuarto Tiempo: La Perdición</h2>
+                    
+                    <div class="course-lock">
+                        <p class="lock-question">Nuestra mayor debilidad siempre será...</p>
+                        <div class="dilemma-buttons">
+                            <button class="dilemma-btn correct-btn">El Sushi</button>
+                            <button class="dilemma-btn wrong-btn">La Comida Rápida</button>
+                        </div>
+                        <p class="mini-error hidden">Error. Piénsalo mejor.</p>
+                    </div>
+
+                    <div class="course-content hidden">
+                        <div class="restaurant-item">
+                            <h3 class="rest-name">Nuestros Favoritos</h3>
+                            <div class="horizontal-gallery">
+                                <img src="assets/photos/monster_1.jpg" alt="" class="rest-photo"><img src="assets/photos/monster_2.jpg" alt="" class="rest-photo"><img src="assets/photos/shunkichi_1.jpg" alt="" class="rest-photo">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- POSTRES -->
+                <article class="menu-course animate-fade-in-up delay-6" style="border-bottom: none;">
+                    <h2 class="course-title">Quinto Tiempo: Para Cerrar</h2>
+                    
+                    <div class="course-lock">
+                        <p class="lock-question">No hay buena cena que no termine con...</p>
+                        <div class="dilemma-buttons">
+                            <button class="dilemma-btn wrong-btn">Un Café Solo</button>
+                            <button class="dilemma-btn correct-btn">Un Helado</button>
+                        </div>
+                        <p class="mini-error hidden">Sabes perfectamente lo que pedimos.</p>
+                    </div>
+
+                    <div class="course-content hidden">
+                        <div class="restaurant-item">
+                            <h3 class="rest-name">Nuestros Helados</h3>
+                            <div class="horizontal-gallery">
+                                <img src="assets/photos/helado_1.jpg" alt="" class="rest-photo"><img src="assets/photos/helado_2.jpg" alt="" class="rest-photo"><img src="assets/photos/helado_3.jpg" alt="" class="rest-photo">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <footer class="menu-bottom-footer">
+                    <button id="btn-next-door" class="continue-button menu-button" type="button">
+                        <span class="continue-label">Siguiente capítulo</span>
+                        <span class="continue-arrow" aria-hidden="true">→</span>
+                    </button>
+                </footer>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const respuestasValidas = ["sushi"];
+
+            const btnUnlock = document.getElementById("btn-unlock");
+            const inputRiddle = document.getElementById("riddle-input");
+            const errorText = document.getElementById("error-message");
+            const lockScreen = document.getElementById("lock-screen");
+            const riddleContent = document.getElementById("riddle-content");
+            const riddleFooter = document.getElementById("riddle-footer");
+            const successMessage = document.getElementById("success-message");
+            const unlockedScreen = document.getElementById("unlocked-screen");
+            const bgMedia = document.getElementById("bg-media");
+            const bgDarkness = document.getElementById("bg-darkness");
+            const btnNextDoor = document.getElementById("btn-next-door");
+
+            function normalizarTexto(texto) {
+                return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[.,;!?]/g, "").trim();
+            }
+
+            // =========================================================
+            // LÓGICA DE REVELACIÓN DE LA FOTO (ARREGLADA)
+            // =========================================================
+            function verificarRespuestaPrincipal() {
+                const inputNormalizado = normalizarTexto(inputRiddle.value);
+                const esCorrecta = respuestasValidas.some(val => {
+                    return inputNormalizado === val || inputNormalizado.includes(val);
+                });
+
+                if (esCorrecta) {
+                    if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
+                    errorText.classList.remove("show");
+
+                    riddleContent.classList.add("fade-out-fast");
+                    riddleFooter.classList.add("fade-out-fast");
+                        
+                    // 1. REDUCIMOS EL BLUR PARA QUE VEA LA FOTO PERO SE LEA EL TEXTO
+                    bgMedia.classList.remove("blur-background");
+                    bgMedia.classList.add("light-blur");
+                    
+                    // 2. ACLARAMOS LA CAPA NEGRA PARA QUE SE VEA MEJOR LA FOTO
+                    bgDarkness.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+                    
+                    setTimeout(() => {
+                        successMessage.classList.remove("hidden");
+                        successMessage.classList.add("animate-fade-in-up");
+                    }, 800);
+
+                    setTimeout(() => {
+                        successMessage.classList.add("fade-out-fast");
+                        
+                        setTimeout(() => {
+                            // 3. AHORA SÍ, PASAMOS AL MENÚ BURDEOS
+                            bgMedia.classList.add("fade-out-fast");
+                            bgDarkness.style.backgroundColor = "transparent"; // Deja ver el burdeos del CSS
+                            
+                            lockScreen.classList.add("hidden");
+                            unlockedScreen.classList.remove("hidden");
+                        }, 800);
+                    }, 4000); // 4 segundos para que disfrute de la foto de fondo
+
+                } else {
+                    if (navigator.vibrate) navigator.vibrate(200);
+                    errorText.classList.add("show");
+                    inputRiddle.classList.remove("shake");
+                    void inputRiddle.offsetWidth; 
+                    inputRiddle.classList.add("shake");
+                }
+            }
+
+            if(btnUnlock) btnUnlock.addEventListener("click", verificarRespuestaPrincipal);
+            if(inputRiddle) {
+                inputRiddle.addEventListener("keypress", (e) => {
+                    if (e.key === "Enter") { e.preventDefault(); inputRiddle.blur(); verificarRespuestaPrincipal(); }
+                });
+            }
+
+            // ==========================================
+            // LÓGICA DEL DILEMA DEL CRÍTICO (BOTONES A/B)
+            // ==========================================
+            const dilemmaLocks = document.querySelectorAll(".course-lock");
+            
+            dilemmaLocks.forEach(lock => {
+                const correctBtn = lock.querySelector(".correct-btn");
+                const wrongBtns = lock.querySelectorAll(".wrong-btn");
+                const errorMsg = lock.querySelector(".mini-error");
+                const contentDiv = lock.nextElementSibling; // El div de las fotos
+
+                // Botón Correcto
+                correctBtn.addEventListener("click", () => {
+                    lock.style.opacity = 0;
+                    setTimeout(() => {
+                        lock.classList.add("hidden");
+                        contentDiv.classList.remove("hidden");
+                        contentDiv.classList.add("animate-fade-in-up");
+                    }, 400);
+                });
+
+                // Botones Incorrectos
+                wrongBtns.forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        if (navigator.vibrate) navigator.vibrate(100);
+                        errorMsg.classList.remove("hidden");
+                        btn.classList.remove("shake");
+                        void btn.offsetWidth;
+                        btn.classList.add("shake");
+                    });
+                });
+            });
+
+            // Siguiente puerta
+            if(btnNextDoor) {
+                btnNextDoor.addEventListener("click", () => {
+                    if (navigator.vibrate) navigator.vibrate(50);
+                    document.getElementById("app-puerta4").classList.add("fade-out");
+                    setTimeout(() => window.location.href = "puerta5.html", 1200);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
