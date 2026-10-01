@@ -179,9 +179,10 @@
                             `).join('')}
                         </div>`;
                 } else if (step.type === "video") {
+                    // AÑADIDO: preload="auto" para obligar a iOS a prepararlo
                     return `
                         <div class="media-wrapper">
-                            <video class="media-fit" src="${step.media}" autoplay muted loop playsinline></video>
+                            <video class="media-fit" src="${step.media}" autoplay muted loop playsinline preload="auto"></video>
                             <div class="edge-blend"></div>
                         </div>
                     `;
@@ -197,6 +198,22 @@
                 }
 
                 hiddenLayer.innerHTML = construirLayout(step);
+
+                // ==========================================
+                // NUEVO: FORZAR EL PLAY EN MÓVILES AL INYECTAR
+                // ==========================================
+                if (step.type === "video") {
+                    const videoObj = hiddenLayer.querySelector("video");
+                    if (videoObj) {
+                        videoObj.load(); // Le da un "empujón" de carga
+                        let playPromise = videoObj.play();
+                        if (playPromise !== undefined) {
+                            playPromise.catch(error => {
+                                console.log("El móvil bloqueó el autoplay", error);
+                            });
+                        }
+                    }
+                }
 
                 storyText.style.opacity = 0;
                 setTimeout(() => {
@@ -220,6 +237,17 @@
 
                 movieTimeout = setTimeout(reproducirSecuencia, step.duration);
             }
+
+            // ==========================================
+            // SALVAVIDAS: SI EL MÓVIL ESTÁ EN BAJO CONSUMO O LO BLOQUEA, 
+            // TOCAR LA PANTALLA FUERZA LA REPRODUCCIÓN
+            // ==========================================
+            document.body.addEventListener('touchstart', function() {
+                const activeVideo = document.querySelector('.layer-active video');
+                if (activeVideo && activeVideo.paused) {
+                    activeVideo.play();
+                }
+            }, { passive: true });
 
             function verificarRespuesta() {
                 const esCorrecta = respuestasValidas.some(val => val === normalizarTexto(inputRiddle.value));
