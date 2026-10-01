@@ -200,18 +200,31 @@
                 hiddenLayer.innerHTML = construirLayout(step);
 
                 // ==========================================
-                // NUEVO: FORZAR EL PLAY EN MÓVILES AL INYECTAR
+                // MAGIA ANTI-BLOQUEO PARA IOS/SAFARI
                 // ==========================================
                 if (step.type === "video") {
                     const videoObj = hiddenLayer.querySelector("video");
                     if (videoObj) {
-                        videoObj.load(); // Le da un "empujón" de carga
-                        let playPromise = videoObj.play();
-                        if (playPromise !== undefined) {
-                            playPromise.catch(error => {
-                                console.log("El móvil bloqueó el autoplay", error);
-                            });
-                        }
+                        // 1. Forzamos TODAS las propiedades de silencio por JS
+                        videoObj.muted = true;
+                        videoObj.defaultMuted = true;
+                        videoObj.playsInline = true;
+                        videoObj.setAttribute('playsinline', '');
+                        videoObj.setAttribute('muted', '');
+                        
+                        // 2. Le damos un empujón de carga
+                        videoObj.load(); 
+                        
+                        // 3. Le damos 50 milisegundos al iPhone para que "dibuje" el vídeo
+                        // antes de obligarle a hacer play. Esto engaña a su sistema de bloqueo.
+                        setTimeout(() => {
+                            let playPromise = videoObj.play();
+                            if (playPromise !== undefined) {
+                                playPromise.catch(error => {
+                                    console.log("El móvil bloqueó el autoplay", error);
+                                });
+                            }
+                        }, 50);
                     }
                 }
 
