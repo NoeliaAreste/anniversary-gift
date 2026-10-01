@@ -38,15 +38,18 @@
         <section id="stage-intro" class="door-section">
             <div class="door-content animate-fade-in-up delay-1">
                 <p class="door-number mystic-accent">EPÍLOGO</p>
-                <h2 class="door-title mystic-title">Archivo vacío.</h2>
+                <h2 class="door-title mystic-title">Puerta vacía</h2>
                 <p class="door-question mystic-text">
-                    Hemos llegado al final de los recuerdos de este año.<br><br>
-                    Pero un archivo vacío no es un final. Es un lienzo en blanco para lo que está por venir. Ahora nos toca escribir el siguiente capítulo juntos.<br><br>
-                    Para abrir la última puerta, deberás demostrar que nos conoces mejor que nadie obteniendo la clave de acceso.
+                    Has llegado al final de los recuerdos de este año...<br><br>
+                    Ha sido un viaje lleno de aventuras, emociones y momentos que quedarán grabados en nuestra memoria para siempre.<br><br>
+                    Sin embargo, un archivo vacío no siempre es un final. En este caso, es un lienzo en blanco para lo que está por venir. <br><br>
+                    Es hora de escribir el siguiente recuerdo juntos.<br><br>
+                    Para abrir la última puerta, deberás demostrar que nos conoces mejor que nadie. <br><br> 
+                    Necesitarás obtener el código secreto que abre la última puerta respondiendo de manera correcta a las siguientes preguntas:
                 </p>
             </div>
             <footer class="door-footer animate-fade-in-up delay-2">
-                <button id="btn-start-code" class="continue-button mystic-button" type="button"><span class="continue-label">Iniciar Secuencia</span></button>
+                <button id="btn-start-code" class="continue-button mystic-button" type="button"><span class="continue-label">Iniciar Acertijo</span></button>
             </footer>
         </section>
 
@@ -55,7 +58,7 @@
             <div class="door-content">
                 <p class="door-number mystic-accent">SECUENCIA 1/3</p>
                 <h2 class="door-title mystic-title">Primer dígito.</h2>
-                <p class="door-question mystic-text">El número que compartimos en el baloncesto. Ese que llevamos a la espalda en nuestras respectivas equipaciones.</p>
+                <p class="door-question mystic-text">Número que compartimos en el baloncesto. Ese que llevamos a la espalda en nuestras respectivas equipaciones.</p>
                 <div class="input-group mystic-input-group">
                     <input type="number" id="input-d1" class="mystic-single-input" placeholder="·" autocomplete="off" min="0" max="9">
                     <p id="error-d1" class="error-text hidden mystic-error">Secuencia incorrecta.</p>
@@ -72,7 +75,7 @@
             <div class="door-content">
                 <p class="door-number mystic-accent">SECUENCIA 2/3</p>
                 <h2 class="door-title mystic-title">Segundo dígito.</h2>
-                <p class="door-question mystic-text">El número exacto de veces que hemos viajado juntos fuera de España.</p>
+                <p class="door-question mystic-text">Número exacto de veces que hemos viajado juntos fuera de España.</p>
                 <div class="input-group mystic-input-group">
                     <input type="number" id="input-d2" class="mystic-single-input" placeholder="·" autocomplete="off" min="0" max="9">
                     <p id="error-d2" class="error-text hidden mystic-error">Secuencia incorrecta.</p>
@@ -89,7 +92,7 @@
             <div class="door-content">
                 <p class="door-number mystic-accent">SECUENCIA 3/3</p>
                 <h2 class="door-title mystic-title">Tercer dígito.</h2>
-                <p class="door-question mystic-text">El número que representa los años que llevamos compartiendo este viaje juntos.</p>
+                <p class="door-question mystic-text">Número que representa los años que llevamos compartiendo este viaje juntos.</p>
                 <div class="input-group mystic-input-group">
                     <input type="number" id="input-d3" class="mystic-single-input" placeholder="·" autocomplete="off" min="0" max="9">
                     <p id="error-d3" class="error-text hidden mystic-error">Secuencia incorrecta.</p>
@@ -119,17 +122,34 @@
         <section id="stage-destination" class="door-section hidden no-scroll-stage">
             <div class="door-content animate-fade-in-up flex-compact">
                 <div class="compact-header">
-                    <p class="door-number mystic-accent">NUEVO CAPÍTULO</p>
-                    <h2 class="door-title mystic-title" style="margin-bottom: 0.5rem;">Nos vamos de viaje.</h2>
+                    <p class="door-number mystic-accent">NUEVA PUERTA</p>
+                    <h2 class="door-title mystic-title" style="margin-bottom: 0.5rem;">Nos vamos de viaje!</h2>
                     <p class="door-question mystic-text" style="font-size: 1rem; margin-bottom: 0;">
-                        El mejor regalo no se envuelve, se mete en una maleta.<br>
-                        Solicita pistas para descubrir las coordenadas de nuestro próximo destino.
+                        Haz las maletas, y prepárate para construir nuevos recuerdos.<br>
+                        Solicita las pistas para descubrir las coordenadas de nuestro próximo destino.
                     </p>
                 </div>
 
                 <div class="mystic-clue-box">
-                    <p id="clue-text" class="mystic-clue-text">Presiona para revelar la primera pista.</p>
-                    <button id="btn-clue" class="mystic-button clue-btn-compact" type="button">Pedir pista</button>
+                    <p id="clue-text" class="mystic-clue-text">Presiona para revelar las pistas sobre nuestro destino.</p>
+                    
+                    <!-- Botón inicial -->
+                    <button id="btn-clue" class="mystic-button clue-btn-compact" type="button">Ver Pistas</button>
+                    
+                    <!-- Nueva navegación (oculta al principio) -->
+                    <div id="clue-nav-container" class="clue-nav-container hidden">
+                        <button id="btn-prev-clue" class="nav-arrow-btn" disabled>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                        </button>
+                        <span id="clue-indicator" class="clue-indicator">1 / 3</span>
+                        <button id="btn-next-clue" class="nav-arrow-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="input-group mystic-input-group compact-input">
@@ -337,30 +357,63 @@
             }
 
             // ----------------------------------------------------
-            // LÓGICA DE LAS PISTAS Y APARICIÓN DEL BILLETE (OPORTO)
+            // LÓGICA DE LAS PISTAS Y NAVEGACIÓN (OPORTO)
             // ----------------------------------------------------
             const respuestasDestino = ["oporto", "porto"];
             const pistas = [
-                "Pista 1: El destino se encuentra en uno de los países que hace frontera con España.",
-                "Pista 2: No hablamos su idioma, pero es tan parecido al nuestro que no tendremos problemas para entendernos.",
-                "Última pista: No es la capital del país, pero es una de sus ciudades insignia."
+                "El destino se encuentra en uno de los países que hace frontera con España.",
+                "No hablamos su idioma, pero es tan parecido al nuestro que no tendremos problemas para entendernos.",
+                "No es la capital del país, pero es una de sus ciudades insignia."
             ];
             
             let pistaActual = 0;
             const btnClue = document.getElementById("btn-clue");
             const clueText = document.getElementById("clue-text");
+            const clueNavContainer = document.getElementById("clue-nav-container");
+            const btnPrevClue = document.getElementById("btn-prev-clue");
+            const btnNextClue = document.getElementById("btn-next-clue");
+            const clueIndicator = document.getElementById("clue-indicator");
 
-            btnClue.addEventListener("click", () => {
-                if (navigator.vibrate) navigator.vibrate(50);
+            // Función para actualizar el texto y los botones
+            function updateClueUI() {
                 clueText.style.opacity = 0;
                 setTimeout(() => {
                     clueText.innerText = pistas[pistaActual];
+                    clueIndicator.innerText = `${pistaActual + 1} / ${pistas.length}`;
+                    
+                    // Bloqueamos la flecha izquierda si estamos en la pista 1
+                    btnPrevClue.disabled = (pistaActual === 0);
+                    // Bloqueamos la flecha derecha si estamos en la última pista
+                    btnNextClue.disabled = (pistaActual === pistas.length - 1);
+                    
                     clueText.style.opacity = 1;
+                }, 300); // Transición suave
+            }
+
+            // Al darle a "Ver Pistas" por primera vez
+            btnClue.addEventListener("click", () => {
+                if (navigator.vibrate) navigator.vibrate(50);
+                btnClue.classList.add("hidden"); // Ocultamos botón original
+                clueNavContainer.classList.remove("hidden"); // Mostramos flechas
+                updateClueUI();
+            });
+
+            // Flecha Anterior
+            btnPrevClue.addEventListener("click", () => {
+                if (pistaActual > 0) {
+                    if (navigator.vibrate) navigator.vibrate(30);
+                    pistaActual--;
+                    updateClueUI();
+                }
+            });
+
+            // Flecha Siguiente
+            btnNextClue.addEventListener("click", () => {
+                if (pistaActual < pistas.length - 1) {
+                    if (navigator.vibrate) navigator.vibrate(30);
                     pistaActual++;
-                    if (pistaActual >= pistas.length) {
-                        btnClue.style.display = "none";
-                    }
-                }, 300);
+                    updateClueUI();
+                }
             });
 
             const btnUnlockDest = document.getElementById("btn-unlock-dest");

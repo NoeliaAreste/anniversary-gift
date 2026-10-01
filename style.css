@@ -1795,3 +1795,84 @@ body, html {
 .fs-barcode {
     opacity: 0.85;
 }
+
+/* =================================================
+   SCROLL COMPLETO Y NATURAL PARA EL PRÓLOGO (PUERTA 1)
+================================================== */
+#stage-intro {
+    justify-content: flex-start; /* Evita que el texto largo se corte por arriba */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 4rem; /* Un poco de aire por arriba */
+}
+
+#stage-intro .door-content {
+    /* Deshacemos los cambios fijos de antes */
+    flex: none;
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+    
+    /* Magia de diseño: si el texto es corto se centra, si es largo respeta el orden */
+    margin-top: auto; 
+}
+
+#stage-intro .door-footer {
+    margin-bottom: auto;
+    margin-top: 3rem; /* Separación clara entre el final del texto y el botón */
+    padding-bottom: 4rem; /* Espacio extra al final para que el botón no quede pegado al borde del móvil */
+}
+
+/* Ocultamos la barra de scroll (la línea gris lateral) para mantener la limpieza de Apple */
+#stage-intro::-webkit-scrollbar {
+    display: none;
+}
+#stage-intro {
+    scrollbar-width: none;
+}
+
+/* =================================================
+   NAVEGACIÓN DE PISTAS (FLECHAS)
+================================================== */
+.clue-nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.nav-arrow-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.4); /* Dorado sutil */
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    color: #d4af37;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.nav-arrow-btn:disabled {
+    opacity: 0.2;
+    cursor: default;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.nav-arrow-btn:not(:disabled):active {
+    background: rgba(212, 175, 55, 0.2);
+    transform: scale(0.9);
+}
+
+.clue-indicator {
+    color: #ffffff;
+    font-size: 0.9rem;
+    letter-spacing: 0.25em;
+    font-family: var(--font-sans);
+    font-weight: 500;
+}
