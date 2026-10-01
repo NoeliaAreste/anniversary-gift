@@ -265,6 +265,20 @@
             const videoOverlay = document.getElementById("video-overlay");
             const planeVideo = document.getElementById("plane-video");
 
+            // ==========================================
+            // TRUCO PARA DESBLOQUEAR EL VÍDEO EN MÓVILES (IOS)
+            // ==========================================
+            document.body.addEventListener('click', function unlockVideo() {
+                planeVideo.muted = true;
+                planeVideo.playsInline = true;
+                let playPromise = planeVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        planeVideo.pause(); // Lo pausamos al instante, ya está desbloqueado
+                    }).catch(e => console.log("Bloqueo inicial", e));
+                }
+            }, { once: true }); // Solo se ejecuta al primer click
+
             function switchStage(currentStage, nextStage) {
                 currentStage.classList.add("fade-out-fast");
                 setTimeout(() => {
@@ -336,11 +350,20 @@
                         void videoOverlay.offsetWidth; // Reflow
                         videoOverlay.style.opacity = "1";
                         
+                        // Reforzamos el silencio para evitar que Safari lo pause
+                        planeVideo.muted = true;
+                        planeVideo.defaultMuted = true;
+                        
                         // Saltamos a los últimos 15 segundos del vídeo
                         if(planeVideo.duration > 15) {
                             planeVideo.currentTime = planeVideo.duration - 15;
                         }
-                        planeVideo.play();
+                        
+                        // Play seguro
+                        let playPromise = planeVideo.play();
+                        if (playPromise !== undefined) {
+                            playPromise.catch(e => console.log("Error al reproducir avión", e));
+                        }
 
                         // A los 15 segundos, ocultamos el vídeo y mostramos las pistas
                         setTimeout(() => {
@@ -352,7 +375,7 @@
                             }, 1000);
                         }, 15000); 
 
-                    }, 2500); 
+                    }, 2500);
                 }, 4500);
             }
 
